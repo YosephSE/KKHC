@@ -1,17 +1,4 @@
-<!--
-=========================================================
-* Paper Dashboard 2 - v2.0.1
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,6 +29,7 @@ Coded by www.creative-tim.com
     <link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/cssformemdet.css" />
   </head>
 
   <body class="">
@@ -146,205 +134,214 @@ Coded by www.creative-tim.com
         <!-- End Navbar -->
         <div class="content">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 sidebarr-wrapper">
               <div class="card card-user">
-                <div class="image">
-                  <img src="../assets/img/damir-bosnjak.jpg" alt="..." />
-                </div>
-                <div class="card-body">
-                  <div class="author">
-                    <a href="#">
-                      <img
-                        class="avatar border-gray"
-                        src="../assets/img/mike.jpg"
-                        alt="..."
-                      />
-                      <h5 class="title">Chet Faker</h5>
-                    </a>
-                    <p class="description">@chetfaker</p>
-                  </div>
-                  <p class="description text-center">
-                    "I like the way you work it <br />
-                    No diggity <br />
-                    I wanna bag it up"
-                  </p>
+                <div class="image details-img">
+                  <img src="../assets/img/mike.jpg" alt="..." />
                 </div>
                 <div class="card-footer">
                   <hr />
                   <div class="button-container">
                     <div class="row">
-                      <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                        <h5>12<br /><small>Files</small></h5>
+                      <div class="col-lg-6 col-md-6 col-6 ml-auto">
+                        <h5>ID Number</h5>
                       </div>
                       <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                        <h5>2GB<br /><small>Used</small></h5>
-                      </div>
-                      <div class="col-lg-3 mr-auto">
-                        <h5>24,6$<br /><small>Spent</small></h5>
+                        <h5>0254</h5>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Team Members</h4>
-                </div>
-                <div class="card-body">
-                  <ul class="list-unstyled team-members">
-                    <li>
-                      <div class="row">
-                        <div class="col-md-2 col-2">
-                          <div class="avatar">
-                            <img
-                              src="../assets/img/faces/ayo-ogunseinde-2.jpg"
-                              alt="Circle Image"
-                              class="img-circle img-no-padding img-responsive"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-md-7 col-7">
-                          DJ Khaled
-                          <br />
-                          <span class="text-muted"><small>Offline</small></span>
-                        </div>
-                        <div class="col-md-3 col-3 text-right">
-                          <btn
-                            class="btn btn-sm btn-outline-success btn-round btn-icon"
-                            ><i class="fa fa-envelope"></i
-                          ></btn>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="row">
-                        <div class="col-md-2 col-2">
-                          <div class="avatar">
-                            <img
-                              src="../assets/img/faces/joe-gardner-2.jpg"
-                              alt="Circle Image"
-                              class="img-circle img-no-padding img-responsive"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-md-7 col-7">
-                          Creative Tim
-                          <br />
-                          <span class="text-success"
-                            ><small>Available</small></span
-                          >
-                        </div>
-                        <div class="col-md-3 col-3 text-right">
-                          <btn
-                            class="btn btn-sm btn-outline-success btn-round btn-icon"
-                            ><i class="fa fa-envelope"></i
-                          ></btn>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="row">
-                        <div class="col-md-2 col-2">
-                          <div class="avatar">
-                            <img
-                              src="../assets/img/faces/clem-onojeghuo-2.jpg"
-                              alt="Circle Image"
-                              class="img-circle img-no-padding img-responsive"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-ms-7 col-7">
-                          Flume
-                          <br />
-                          <span class="text-danger"><small>Busy</small></span>
-                        </div>
-                        <div class="col-md-3 col-3 text-right">
-                          <btn
-                            class="btn btn-sm btn-outline-success btn-round btn-icon"
-                            ><i class="fa fa-envelope"></i
-                          ></btn>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="card card-user">
                 <div class="card-header">
-                  <h5 class="card-title">Edit Profile</h5>
+                  <h5 class="card-title">Full Name of Member</h5>
                 </div>
                 <div class="card-body">
                   <form>
-                    <div class="row">
-                      <div class="col-md-5 pr-1">
+                    <div class="row user-row">
+                      <div class="col-md-3 px-1">
+                        <label for="sex">ጾታ</label>
+                        <select name="sex" id="sex" class="form-control" disabled="">
+                          <option value="ሴት">ሴት</option>
+                          <option value="ወንድ">ወንድ</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label for="dob">የልደት ቀን *</label>
+                        <input
+                          type="date"
+                          id="dob"
+                          name="dob"
+                          required
+                          class="form-control"
+                          value="9/5/1985"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="col-md-3 form-check form-check-inline">
+                        <span class="handicap">የአካል ጉዳት</span>
+                        <label for="yes" class="form-check-label">አዎ</label>
+                        <input
+                          type="radio"
+                          id="yes"
+                          name="handicap"
+                          value="true"
+                          class="form-check-input"
+                          disabled=""
+                        />
+                        <label for="no" class="form-check-label">አይ</label>
+                        <input
+                          type="radio"
+                          id="no"
+                          name="handicap"
+                          value="false"
+                          class="form-check-input"
+                          disabled=""
+                          checked
+                        />
+                      </div>
+                      <div class="col-md-12">
+                        <div id="handicapDescription" class="handicap_desc">
+                          <label for="description">የአካል ጉዳት አይነት:</label>
+                          <textarea
+                            name="description"
+                            id="description"
+                            class="form-control textarea"
+                            maxlength="250"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- address staff -->
+                    <div class="row user-raw">
+                      <div class="col-md-2">
                         <div class="form-group">
-                          <label>Company (disabled)</label>
-                          <input
-                            type="text"
+                          <label for="subcity">ክፍለ-ከተማ *</label>
+                          <select
+                            id="subcity"
+                            name="subcity"
                             class="form-control"
                             disabled=""
-                            placeholder="Company"
-                            value="Creative Code Inc."
-                          />
+                          >
+                            <option value="lemikura">ለሚ ኩራ</option>
+                            <!-- Add more options as needed -->
+                          </select>
                         </div>
                       </div>
-                      <div class="col-md-3 px-1">
+                      <div class="col-md-2">
                         <div class="form-group">
-                          <label>Username</label>
+                          <label for="district">ወረዳ *</label>
+                          <select
+                            id="district"
+                            name="district"
+                            class="form-control"
+                            disabled=""
+                          >
+                            <option value="1">1</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="house_no">የቤት ቁጥር</label>
                           <input
                             type="text"
+                            id="house_no"
+                            name="house_no"
+                            placeholder="የቤት ቁጥር"
+                            maxlength="10"
                             class="form-control"
-                            placeholder="Username"
-                            value="michael23"
+                            disabled=""
                           />
                         </div>
                       </div>
-                      <div class="col-md-4 pl-1">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
+                          <label for="other_name">ልዩ መጠርያ *</label>
+                          <input
+                            type="text"
+                            id="other_name"
+                            name="other_name"
+                            class="form-control"
+                            disabled=""
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="countryCode1">ስልክ ቁጥር*</label>
+                          <select
+                            id="countryCode1"
+                            name="countryCode"
+                            class="form-control"
+                            disabled=""
+                          >
+                            <option value="eth">+251</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="phone">
+                            <label for="phoneNumber1">ስልክ:</label>
+                            <input
+                              type="tel"
+                              id="phoneNumber1"
+                              name="phoneNumber"
+                              class="form-control"
+                              pattern="[0-9]{9}"
+                              disabled=""
+                              required
+                            />
+                            <p class="error-msg" id="phno-err-msg1"></p>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="countryCode2">ስልክ ቁጥር</label>
+                          <select
+                            id="countryCode2"
+                            name="countryCode"
+                            class="form-control"
+                            disabled=""
+                          >
+                            <option value="eth">+251</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="phone">
+                            <label for="phoneNumber2">ስልክ:</label>
+                            <input
+                              type="tel"
+                              id="phoneNumber2"
+                              name="phoneNumber"
+                              class="form-control"
+                              pattern="[0-9]{9}"
+                              disabled=""
+                            />
+                            <p class="error-msg" id="phno-err-msg2"></p>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>ኢ-ሜይል</label>
                           <input
                             type="email"
+                            name="email"
                             class="form-control"
-                            placeholder="Email"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                          <label>First Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Company"
-                            value="Chet"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-6 pl-1">
-                        <div class="form-group">
-                          <label>Last Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Last Name"
-                            value="Faker"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>Address</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Home Address"
-                            value="Melbourne, Australia"
+                            placeholder="ኢ-ሜይል"
+                            disabled=""
+                            required
                           />
                         </div>
                       </div>
@@ -352,33 +349,44 @@ Coded by www.creative-tim.com
                     <div class="row">
                       <div class="col-md-4 pr-1">
                         <div class="form-group">
-                          <label>City</label>
+                          <label for="bap_date">የጥምቀት ቀን </label>
                           <input
-                            type="text"
+                            type="date"
+                            name="bap_date"
+                            id="bap_date"
                             class="form-control"
-                            placeholder="City"
-                            value="Melbourne"
+                            value="12/14/2003"
+                            disabled=""
+                            required
                           />
                         </div>
                       </div>
                       <div class="col-md-4 px-1">
                         <div class="form-group">
-                          <label>Country</label>
+                          <label for="bap_where">የጥምቀት ቦታ</label>
                           <input
                             type="text"
+                            name="bap_where"
+                            id="bap_where"
+                            maxlength="150"
                             class="form-control"
-                            placeholder="Country"
-                            value="Australia"
+                            value="ኮተቤ ቃለህይወት"
+                            disabled=""
+                            required
                           />
                         </div>
                       </div>
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
-                          <label>Postal Code</label>
+                          <label for="mem_date">አባልነት ቀን</label>
                           <input
-                            type="number"
+                            type="date"
+                            name="mem_date"
+                            id="mem_date"
                             class="form-control"
-                            placeholder="ZIP Code"
+                            value="12/14/2003"
+                            disabled=""
+                            required
                           />
                         </div>
                       </div>
@@ -386,17 +394,333 @@ Coded by www.creative-tim.com
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>About Me</label>
-                          <textarea class="form-control textarea">
-Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea
+                          <span class="service">በቤተ ክርስትያን ውስጥ አሉ?</span>
+                          <label for="yesInChurch">አዎ</label>
+                          <input
+                            type="radio"
+                            name="inchurch"
+                            value="true"
+                            id="yesInChurch"
+                            disabled=""
+                          />
+                          <label for="noInChurch">አይ</label>
+                          <input
+                            type="radio"
+                            name="inchurch"
+                            value="false"
+                            id="noInChurch"
+                            disabled=""
+                            checked
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="in_church" id="inChurch">
+                            በቤተ ክርስትያን አገልግሎት ውስጥ አሉ?
+                            <label
+                              >አዎ
+                              <input
+                                type="radio"
+                                name="service"
+                                value="true"
+                                id="yesService"
+                                disabled=""
+                              />
+                            </label>
+                            <label
+                              >አይ
+                              <input
+                                type="radio"
+                                name="service"
+                                value="false"
+                                id="noService"
+                                disabled=""
+                                checked
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="service_list" id="serviceId">
+                            <!-- choice list -->
+                            <!-- each one have to have a radio to show whether they are acitve or not -->
+                            <div class="singers">
+                              <label
+                                >ዝማሬ
+                                <input
+                                  type="checkbox"
+                                  name="singer"
+                                  class="servWhere1"
+                                  disabled=""
+                                  checked
+                                />
+                                <span class="serv_where" id="servWhereId1">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status1"
+                                      disabled=""
+                                      checked
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status1" disabled=""/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="edu_status">ትምህርት ተምረዋል</span>
+                          <label for="yesEdu">አዎ</label>
+                          <input
+                            type="radio"
+                            name="educheck"
+                            id="yesEdu"
+                            value="true"
+                            disabled=""
+                            checked
+                          />
+                          <label for="noEdu">አይ</label>
+                          <input
+                            type="radio"
+                            name="educheck"
+                            id="noEdu"
+                            value="false"
+                            disabled=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row learned" id="learned">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="eduStatusList">የትምህርት ደረጃ</label>
+                          <select
+                            name="edu_status_list"
+                            id="eduStatusList"
+                            class="form-control"
+                            disabled=""
                           >
+                          <option value="masters">ማስተርስ</option>
+                            <option value="elementary">የመጀመርያ ደረጃ ትምህርት</option>
+                            <option value="highschool">ሁለተኛ ደረጃ ትምህርት</option>
+                            <option value="diploma">ዲፕሎማ</option>
+                            <option value="certeficate">ሰርተፍኬት</option>
+                            <option value="degree">ዲግሪ</option>
+                            <option value="phd">ዶክትሬት</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="subOfStudy">የትምህርት ዘርፍ(የምረቃ ፊልድ)*</label>
+                          <input
+                            type="text"
+                            name="sub_of_study"
+                            id="subOfStudy"
+                            class="form-control"
+                            placeholder="የትምህርት ዘርፍ"
+                            maxlength="200"
+                            value="ሆቴል ማኔጅመንት"
+                            disabled=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="workqest"
+                            >ስራ አላቸው?
+                            <label>
+                              አዎ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="true"
+                                id="yesWork"
+                                disabled=""
+                                checked
+                              />
+                            </label>
+                            <label>
+                              አይ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="false"
+                                id="noWork"
+                                disabled=""
+                              />
+                            </label>
+                            <!-- housewife -->
+                            <label>
+                              የቤት እመቤት
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="housewife"
+                                disabled=""
+                              />
+                            </label>
+                            <!-- student -->
+                            <label>
+                              ተማሪ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="student"
+                                disabled=""
+                              />
+                            </label>
+                            <label>
+                              <!-- retiered -->
+                              ጡረተኛ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="retired"
+                                disabled=""
+                              />
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row iwork" id="iWork">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>
+                            የስራ አይነት
+                            <select name="work_type" class="form-control" disabled="">
+                              <option value="private">የግል</option>
+                              <option value="govt">የመንግስት</option>
+                              <option value="no_gov">መንግስታዊ ያልሆነ</option>
+                              <option value="church">የቤ/ክ አገልጋይ</option>
+                              <option value="ngo">የግል ድርጅት</option>
+                              <option value="housemade">የቤት ሰራተኛ</option>
+                            </select>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            የስራ ቦታ
+                            <input
+                              type="text"
+                              name="work_place"
+                              id="workPlace"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የስራ ቦታ"
+                              value="ሃይሌ ሪዞርት" disabled=""
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >የስራ ሃላፊነት
+                            <input
+                              type="text"
+                              name="responsibility"
+                              id="responsiblity"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የስራ ሃላፊነት"
+                              value="ማናጀር" disabled=""
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            የሚጠሩበት ፕሮፌሽን
+                            <input
+                              type="text"
+                              name="profession"
+                              id="profession"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የሚጠሩበት ፕሮፌሽን"
+                              value="ማናጀር"
+                              disabled=""
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            ቤ/ክ የምትጠቀምበት ችሎታ
+                            <input
+                              type="text"
+                              name="talent"
+                              id="talent"
+                              maxlength="254"
+                              class="form-control"
+                              disabled=""
+                              placeholder="ቤ/ክ የምትጠቀምበት ችሎታ"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="maritialquest">
+                            የጋብቻ ሁኔታ *
+                            <label>
+                              ያገባ
+                              <input type="radio" name="mstats" value="true" 
+                              disabled=""/>
+                            </label>
+                            <label>
+                              ያላገባ
+                              <input
+                                type="radio"
+                                name="mstats"
+                                value="false"
+                                disabled=""
+                                checked
+                              />
+                            </label>
+                            <label>
+                              መበልት
+                              <input
+                                type="radio"
+                                name="mstats"
+                                value="widowed"
+                                disabled=""
+                              />
+                            </label>
+                          </span>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="update ml-auto mr-auto">
                         <button type="submit" class="btn btn-primary btn-round">
-                          Update Profile
+                          መረጃ አስተካክል
                         </button>
                       </div>
                     </div>
@@ -406,42 +730,6 @@ Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea
             </div>
           </div>
         </div>
-        <footer class="footer footer-black footer-white">
-          <div class="container-fluid">
-            <div class="row">
-              <nav class="footer-nav">
-                <ul>
-                  <li>
-                    <a href="https://www.creative-tim.com" target="_blank"
-                      >Creative Tim</a
-                    >
-                  </li>
-                  <li>
-                    <a href="https://www.creative-tim.com/blog" target="_blank"
-                      >Blog</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.creative-tim.com/license"
-                      target="_blank"
-                      >Licenses</a
-                    >
-                  </li>
-                </ul>
-              </nav>
-              <div class="credits ml-auto">
-                <span class="copyright">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </span>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
     <!--   Core JS Files   -->

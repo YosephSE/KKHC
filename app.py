@@ -179,6 +179,11 @@ def newchild():
     return "newchild"
 
 
+# Analysis
+@app.route("/analysis")
+def analysis():
+    return render_template("analysis.html")
+
 # Children list
 @app.route("/children")
 def children():
