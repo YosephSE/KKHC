@@ -184,6 +184,16 @@ def newchild():
 def analysis():
     return render_template("analysis.html")
 
+# Members detail stats
+@app.route("/member/<int:id>", methods=['GET', 'POST'])
+def member(id):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * from memberinfo left join churchinfo on id = memberid where id = {id}")
+    member = cur.fetchall()
+    member = member[0]
+    cur.close()
+    return render_template("memberdetail.html", member = member)
+
 # Children list
 @app.route("/children")
 def children():
