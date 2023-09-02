@@ -25,3 +25,11 @@
 .error-msg {
     color: red;
 }
+.dash-anch {
+    transition: all 100;
+}
+.dash-anch:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em #f1ff5c;
+    transform: translateY(-10px);
+    cursor: pointer;
+}
