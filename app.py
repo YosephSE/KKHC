@@ -90,73 +90,72 @@ def login():
 
 @app.route('/addmember', methods=['GET', 'POST'])
 def addmember():
-    if auth():        
-        if request.method == "POST":
-            try:
-                if 'profile' in request.files:
-                    profile = request.files['profile']
-                title = request.form["title"]
-                f_name = request.form["f_name"]
-                m_name = request.form["m_name"]
-                l_name = request.form["l_name"]
-                sex = request.form["sex"]
-                dob = request.form["dob"]
-                handicap = request.form['handicap']            
-                description = request.form["description"]
-                subcity = request.form['subcity']
-                district = request.form['district']
-                house_no = request.form['house_no']
-                other_name = request.form['other_name']
-                phone = request.form['phoneNumber1']
-                homephone = request.form['phoneNumber2']
-                email = request.form["email"]
-                bap_date = request.form["bap_date"]
-                bap_where = request.form["bap_where"]
-                mem_date = request.form["mem_date"]
-                # service = request.form["service"]
-                # churchrelation = request.form["churchrelation"]
-                # if service == "1":
-                #     singer = request.form["singer"]
-                #     children = request.form["children"]
-                #     prayer = request.form["prayer"]
-                #     # youth = request.form["youth"]
-                #     girls = request.form["girls"]
-                #     outreach = request.form["outreach"]
-                #     deacon = request.form["deacon"]
-                #     charity = request.form["charity"]
-                #     eddir = request.form["eddir"]
-                    # elder = request.form["elder"]
-                    # print(singer, children, prayer, girls, outreach, deacon, charity, eddir)
-            except KeyError as e:
-                return f"Missing or incorrect form field:2 {e}"
-            except Exception as e:
-                return f"An error occurred: {e}"
+    if not auth():
+        return redirect(url_for("login"))    
+    if request.method == "POST":
+        try:
+            if 'profile' in request.files:
+                profile = request.files['profile']
+            title = request.form["title"]
+            f_name = request.form["f_name"]
+            m_name = request.form["m_name"]
+            l_name = request.form["l_name"]
+            sex = request.form["sex"]
+            dob = request.form["dob"]
+            handicap = request.form['handicap']            
+            description = request.form["description"]
+            subcity = request.form['subcity']
+            district = request.form['district']
+            house_no = request.form['house_no']
+            other_name = request.form['other_name']
+            phone = request.form['phoneNumber1']
+            homephone = request.form['phoneNumber2']
+            email = request.form["email"]
+            bap_date = request.form["bap_date"]
+            bap_where = request.form["bap_where"]
+            mem_date = request.form["mem_date"]
+            # service = request.form["service"]
+            # churchrelation = request.form["churchrelation"]
+            # if service == "1":
+            #     singer = request.form["singer"]
+            #     children = request.form["children"]
+            #     prayer = request.form["prayer"]
+            #     # youth = request.form["youth"]
+            #     girls = request.form["girls"]
+            #     outreach = request.form["outreach"]
+            #     deacon = request.form["deacon"]
+            #     charity = request.form["charity"]
+            #     eddir = request.form["eddir"]
+                # elder = request.form["elder"]
+                # print(singer, children, prayer, girls, outreach, deacon, charity, eddir)
+        except KeyError as e:
+            return f"Missing or incorrect form field:2 {e}"
+        except Exception as e:
+            return f"An error occurred: {e}"
             
 
-            try:
-                cur = mysql.connection.cursor()
-                cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
+            mysql.connection.commit()
+            cur.execute("SELECT id FROM memberinfo WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
+            userid = cur.fetchall()
+            userid = userid[0][0]
+            cur.close()
+            cur = mysql.connection.cursor()
+            # cur.excute("INSERT INTO services(memberid, serviceid, isactive) VALUES ()")
+            # cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizedwhere, dateofmembership) VALUES (%s, %s, %s, %s)", (userid, bap_date, bap_where, mem_date))
+            # mysql.connection.commit()
+                # Change file name
+            if 'profile' in request.files and profile.filename != '':
+                profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
+                cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
                 mysql.connection.commit()
-                cur.execute("SELECT id FROM memberinfo WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
-                userid = cur.fetchall()
-                userid = userid[0][0]
                 cur.close()
-                cur = mysql.connection.cursor()
-                # cur.excute("INSERT INTO services(memberid, serviceid, isactive) VALUES ()")
-                # cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizedwhere, dateofmembership) VALUES (%s, %s, %s, %s)", (userid, bap_date, bap_where, mem_date))
-                # mysql.connection.commit()
-                    # Change file name
-                if 'profile' in request.files and profile.filename != '':
-                    profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
-                    cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
-                    mysql.connection.commit()
-                    cur.close()
-            except Exception as e:
-                return f"An error occurred: {e}"
+        except Exception as e:
+            return f"An error occurred: {e}"
 
-            return 'Form submitted successfully!'
-    else:
-        return redirect(url_for("login"))
+        return 'Form submitted successfully!'
     return render_template('addmember.html')
 
 # Members list
@@ -187,11 +186,17 @@ def analysis():
 # Members detail stats
 @app.route("/member/<int:id>", methods=['GET', 'POST'])
 def member(id):
-    cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * from memberinfo left join churchinfo on id = memberid where id = {id}")
-    member = cur.fetchall()
-    member = member[0]
-    cur.close()
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute(f"SELECT * from memberinfo left join churchinfo on id = memberid where id = {id}")
+        member = cur.fetchall()
+        member = member[0]
+        cur.close()
+    except IndexError:
+        return "User with the id provided not found"
+    except Exception as e:
+        return f"Error occured: {e}"
+
     return render_template("memberdetail.html", member = member)
 
 # Children list
