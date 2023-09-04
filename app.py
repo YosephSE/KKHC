@@ -12,6 +12,7 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '1212'
 app.config['MYSQL_DB'] = 'kkhc'
+# app.config['MYSQL_PORT'] = 3306
 
 # Initialize the Connection
 mysql = MySQL(app)
@@ -55,11 +56,14 @@ def admin():
         cur.execute("SELECT COUNT(id) FROM children")
         childrencount = cur.fetchall()
         childrencount = childrencount[0][0]
+        cur.execute("SELECT COUNT(memberid) FROM churchinfo WHERE churchrelationship = 1")
+        activemembers = cur.fetchall()
+        activemembers = activemembers[0][0]
 
         cur.close()
     else:
         return redirect(url_for("login"))
-    return render_template("dashboard.html", memberscount = memberscount, childrencount = childrencount)
+    return render_template("dashboard.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
 
 
 # Login for Admins
@@ -102,7 +106,11 @@ def addmember():
             l_name = request.form["l_name"]
             sex = request.form["sex"]
             dob = request.form["dob"]
-            handicap = request.form['handicap']            
+            handicap = request.form['handicap']
+            if handicap == 'false':
+                handicap = 0
+            else:
+                handicap = 1       
             description = request.form["description"]
             subcity = request.form['subcity']
             district = request.form['district']
@@ -114,22 +122,52 @@ def addmember():
             bap_date = request.form["bap_date"]
             bap_where = request.form["bap_where"]
             mem_date = request.form["mem_date"]
-            # service = request.form["service"]
-            # churchrelation = request.form["churchrelation"]
-            # if service == "1":
-            #     singer = request.form["singer"]
-            #     children = request.form["children"]
-            #     prayer = request.form["prayer"]
-            #     # youth = request.form["youth"]
-            #     girls = request.form["girls"]
-            #     outreach = request.form["outreach"]
-            #     deacon = request.form["deacon"]
-            #     charity = request.form["charity"]
-            #     eddir = request.form["eddir"]
-                # elder = request.form["elder"]
-                # print(singer, children, prayer, girls, outreach, deacon, charity, eddir)
+            inchurch = request.form["inchurch"]
+            if inchurch == 'false':
+                inchurch = 0
+            else:
+                inchurch = 1  
+            service = request.form["service"]
+            if service == "true":
+                service = {}
+                if 'singer' in request.form:
+                    service[request.form["singer"]] = request.form['status1']
+                if 'children' in request.form:
+                    service[request.form["children"]] = request.form['status2']
+                if 'prayer' in request.form:
+                    service[request.form["prayer"]] = request.form['status3']
+                if 'youth' in request.form:
+                    service[request.form["youth"]] = request.form['status4']
+                if 'girls' in request.form:
+                    service[request.form["girls"]] = request.form['status5']
+                if 'outreach' in request.form:
+                    service[request.form["outreach"]] = request.form['status6']
+                if 'deacon' in request.form:
+                    service[request.form["deacon"]] = request.form['status7']
+                if 'charity' in request.form:
+                    service[request.form["charity"]] = request.form['status8']
+                if 'eddir' in request.form:
+                    service[request.form["eddir"]] = request.form['status9']
+                if 'elder' in request.form:
+                    service[request.form["elder"]] = request.form['status10']
+            educheck = request.form['educheck']
+            if educheck == 'true':
+                level = request.form["edu_status_list"]
+                field = request.form["sub_of_study"]
+            work_stats = request.form["work_stats"]
+            if work_stats == 'true':
+                work_stats = 1
+                work_type = request.form["work_type"]
+                work_place = request.form["work_place"]
+                responsibility = request.form["responsibility"]
+                profession = request.form['profession']
+                talent = request.form["talent"]
+                print(work_stats, work_type, responsibility, profession, talent)
+            else:
+                work_stats = 0
+            
         except KeyError as e:
-            return f"Missing or incorrect form field:2 {e}"
+            return f"Missing or incorrect form field: {e}"
         except Exception as e:
             return f"An error occurred: {e}"
             
@@ -143,10 +181,19 @@ def addmember():
             userid = userid[0][0]
             cur.close()
             cur = mysql.connection.cursor()
-            # cur.excute("INSERT INTO services(memberid, serviceid, isactive) VALUES ()")
-            # cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizedwhere, dateofmembership) VALUES (%s, %s, %s, %s)", (userid, bap_date, bap_where, mem_date))
-            # mysql.connection.commit()
-                # Change file name
+            cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizedwhere, dateofmembership, churchrelationship) VALUES (%s, %s, %s, %s, %s)", (userid, bap_date, bap_where, mem_date, inchurch))
+            mysql.connection.commit()
+            if service == "true":
+                for key, value in service.items():
+                    cur.execute("INSERT INTO serviceinfo(memberid, serviceid, isactive) VALUES (%s, %s, %s)", (userid, key, value))
+                    mysql.connection.commit()
+            if educheck == 'true':
+                cur.execute("INSERT INTO education(memberid, field, edulevel) VALUES (%s, %s, %s)", (userid, field, level))
+                mysql.connection.commit()
+            if work_stats == 1:
+                cur.execute("INSERT INTO workinfo(memberid, work, worktype, place, responsiblility, proffesion, talent) VALUES(%s, %s, %s, %s, %s, %s, %s)", (userid, work_stats, work_type, work_place, responsibility, profession, talent))
+                mysql.connection.commit()
+
             if 'profile' in request.files and profile.filename != '':
                 profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
                 cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
@@ -193,7 +240,7 @@ def member(id):
         member = member[0]
         cur.close()
     except IndexError:
-        return "User with the id provided not found"
+        return redirect('../members')
     except Exception as e:
         return f"Error occured: {e}"
 
@@ -203,6 +250,8 @@ def member(id):
 @app.route("/children")
 def children():
     return "Children list"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
