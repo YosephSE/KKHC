@@ -48,7 +48,9 @@ def home():
 # Admin Home
 @app.route("/admin")
 def admin():
-    if auth():
+    if not auth():
+        return redirect(url_for("login"))
+    try:
         cur = mysql.connection.cursor()
         cur.execute("SELECT COUNT(id) FROM memberinfo")
         memberscount = cur.fetchall()
@@ -59,10 +61,10 @@ def admin():
         cur.execute("SELECT COUNT(memberid) FROM churchinfo WHERE churchrelationship = 1")
         activemembers = cur.fetchall()
         activemembers = activemembers[0][0]
-
         cur.close()
-    else:
-        return redirect(url_for("login"))
+    except Exception as e:
+        return f'Server error: {e}'
+        
     return render_template("dashboard.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
 
 
@@ -165,6 +167,13 @@ def addmember():
                 print(work_stats, work_type, responsibility, profession, talent)
             else:
                 work_stats = 0
+            mstats = request.form['mstats']
+            if mstats == "true":
+                sFName = request.form['sFName']
+                sMName = request.form['sMName']
+                sLName = request.form['sLName']
+                shere = request.form['shere']
+            print(sFName, sMName, sLName, shere)
             
         except KeyError as e:
             return f"Missing or incorrect form field: {e}"
@@ -193,12 +202,15 @@ def addmember():
             if work_stats == 1:
                 cur.execute("INSERT INTO workinfo(memberid, work, worktype, place, responsiblility, proffesion, talent) VALUES(%s, %s, %s, %s, %s, %s, %s)", (userid, work_stats, work_type, work_place, responsibility, profession, talent))
                 mysql.connection.commit()
-
+            if mstats == 'true':
+                cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s, %s)", (userid, shere, sFName, sMName, sLName))
+                mysql.connection.commit()
             if 'profile' in request.files and profile.filename != '':
                 profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
                 cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
                 mysql.connection.commit()
                 cur.close()
+
         except Exception as e:
             return f"An error occurred: {e}"
 
@@ -208,16 +220,16 @@ def addmember():
 # Members list
 @app.route('/members')
 def members():
-    if auth():
-        today = datetime.today()
-        today = today.strftime('%Y-%m-%d')
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT firstname, middlename, lastname, subcity, personalphone, picture FROM memberinfo left join files on id = memberid")
-        members = cur.fetchall()
-        cur.close()
-        return render_template('memberslist.html', members = members)
-    else:
+    if not auth():
         return redirect(url_for("login"))
+        # today = datetime.today()
+        # today = today.strftime('%Y-%m-%d')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo LEFT JOIN churchinfo ON id = memberid")
+    members = cur.fetchall()
+    cur.close()
+    return render_template('memberslist.html', members = members)
+        
 
 # Add new children
 @app.route("/newchild", methods=["GET", "POST"])

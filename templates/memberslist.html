@@ -10,7 +10,7 @@
     />
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Membeers List</title>
+    <title>KKHC | Members List</title>
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
       name="viewport"
@@ -151,13 +151,21 @@
                         
                       </thead>
                       <tbody>
+                        
                         {% for member in members %}
                         <tr>
-                          <td><img src="{{ url_for('static', filename='Attachments/49.jpg') }}" alt="..." class="img-circle img-no-padding img-responsive avatar"></td>
-                          <td><a href="">{{member[0] +' '+ member[1] +' '+ member[2]}}</a></td>
-                          <td>{{member[3]}}</td>
+                          
+
+                          <td><img src="{{ url_for('static', filename='/attachments/78.jpg') }}" alt="..." class="img-circle img-no-padding img-responsive avatar"></td>
+                          <td><a href="">{{member[1] +' '+ member[2] +' '+ member[3]}}</a></td>
                           <td>{{member[4]}}</td>
-                          <td class="text-right"><button class="btn btn-success">active</button></td>
+                          <td>{{member[5]}}</td>
+                          {% if member[6] == 1 %}
+                          <td class="text-right"><button class="btn btn-success">Active</button></td>
+                          {% endif %}
+                          {% if member[6] == 0 %}
+                          <td class="text-right"><button class="btn btn-danger">InActive</button></td>
+                          {% endif %}
                         </tr>
                         {% endfor %}
                         
