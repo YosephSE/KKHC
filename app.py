@@ -173,7 +173,7 @@ def addmember():
                 sMName = request.form['sMName']
                 sLName = request.form['sLName']
                 shere = request.form['shere']
-            print(sFName, sMName, sLName, shere)
+            # print(sFName, sMName, sLName, shere)
             
         except KeyError as e:
             return f"Missing or incorrect form field: {e}"
@@ -202,9 +202,9 @@ def addmember():
             if work_stats == 1:
                 cur.execute("INSERT INTO workinfo(memberid, work, worktype, place, responsiblility, proffesion, talent) VALUES(%s, %s, %s, %s, %s, %s, %s)", (userid, work_stats, work_type, work_place, responsibility, profession, talent))
                 mysql.connection.commit()
-            if mstats == 'true':
-                cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s, %s)", (userid, shere, sFName, sMName, sLName))
-                mysql.connection.commit()
+            # if mstats == 'true':
+            #     cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s, %s)", (userid, shere, sFName, sMName, sLName))
+            #     mysql.connection.commit()
             if 'profile' in request.files and profile.filename != '':
                 profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
                 cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
@@ -265,5 +265,5 @@ def children():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 

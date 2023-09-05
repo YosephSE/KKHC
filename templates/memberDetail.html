@@ -133,7 +133,8 @@
             <div class="col-md-4 sidebarr-wrapper">
               <div class="card card-user">
                 <div class="image details-img">
-                  <img src="{{ url_for('static', filename='assets/img/mike.jpg') }}" alt="..." />
+                  {% set pic = 'Attachments/' + member[0]|string + '.jpg' %}
+                  <img src="{{ url_for('static', filename=pic) }}" alt="..." />
                 </div>
                 <div class="card-footer">
                   <hr />
@@ -143,7 +144,7 @@
                         <h5>ID Number</h5>
                       </div>
                       <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                        <h5>0254</h5>
+                        <h5>{{member[0]}}</h5>
                       </div>
                     </div>
                   </div>
