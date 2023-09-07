@@ -33,3 +33,14 @@
     transform: translateY(-10px);
     cursor: pointer;
 }
+.dash-anch {
+    transition: all 0.1s;
+}
+.dash-anch:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px;
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}

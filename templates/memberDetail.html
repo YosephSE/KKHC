@@ -134,7 +134,7 @@
               <div class="card card-user">
                 <div class="image details-img">
                   {% set pic = 'Attachments/' + member[0]|string + '.jpg' %}
-                  <img src="{{ url_for('static', filename=pic) }}" alt="..." />
+                  <img src="{{ url_for('static', filename=pic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;"  />
                 </div>
                 <div class="card-footer">
                   <hr />

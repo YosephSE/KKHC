@@ -127,6 +127,7 @@
             </div>
           </div>
         </nav>
+        
         <!-- End Navbar -->
         <div class="content addmember">
           <div class="row addmember-size">
@@ -134,6 +135,14 @@
               <div class="card card-user">
                 <div class="card-header">
                   <h5 class="card-title">የአባል መጨመርያ ፎርም</h5>
+                  {% for message in get_flashed_messages() %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endfor %}
                 </div>
                 <div class="card-body">
                   <form action="addmember" method="post" enctype="multipart/form-data">
@@ -145,7 +154,7 @@
                           name="profile"
                           id="fileToUpload"
                           accept="image/*"
-                          class="btn btn-danger"
+                          class="btn btn-primary"
                         />
                       </label>
                       

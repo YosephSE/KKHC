@@ -5,8 +5,12 @@ from datetime import datetime
 
 # Initialize flask
 app = Flask(__name__)
-app.secret_key = 'TzALB4eJ89*Ib!bn0aH28w9MFSy2iuu1!0olxkHADk2gq&PpMQ'
-
+app.config['SECRET_KEY'] = 'TzALB4eJ89*Ib!bn0aH28w9MFSy2iuu1!0olxkHADk2gq&PpMQ'
+app.config['SESSION_COOKIE_NAME'] = 'ID'
+# app.config['SESSION_COOKIE_SECURE'] = True 
+# app.config['SESSION_COOKIE_HTTPONLY'] = True
+# app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+# app.config['SESSION_PERMANENT'] = False
 # Connect to MYSQL database
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -63,7 +67,8 @@ def admin():
         activemembers = activemembers[0][0]
         cur.close()
     except Exception as e:
-        return f'Server error: {e}'
+        flash(f'Server error: {e}')
+        return redirect(url_for('admin'))
         
     return render_template("dashboard.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
 
@@ -82,14 +87,16 @@ def login():
             dbpassword = admin[0][0]
             
         except Exception:
-            return "Username not found!"
+            flash("Username Not Found!")
+            return redirect(url_for('login'))
         else:
             if password == dbpassword:
                 session["username"] = username
                 session["password"] = password
                 return redirect(url_for("admin"))
             else:
-                return f"passwrod incorrect!"
+                flash("Password Incorrect!")
+                return redirect(url_for('login'))
     return render_template("login.html")
 
 # Add new member
@@ -173,12 +180,14 @@ def addmember():
                 sMName = request.form['sMName']
                 sLName = request.form['sLName']
                 shere = request.form['shere']
-            # print(sFName, sMName, sLName, shere)
+            
             
         except KeyError as e:
-            return f"Missing or incorrect form field: {e}"
+            flash(f"Missing or incorrect form field: {e}")
+            return redirect(url_for('addmember'))
         except Exception as e:
-            return f"An error occurred: {e}"
+            flash(f"An error occurred: {e}")
+            return redirect(url_for("addmember"))
             
 
         try:
@@ -212,9 +221,10 @@ def addmember():
                 cur.close()
 
         except Exception as e:
-            return f"An error occurred: {e}"
-
-        return 'Form submitted successfully!'
+            flash(f"An error occurred: {e}")
+            return redirect(url_for('addmember'))
+        flash('Form Submitted Successfully!')
+        return redirect(url_for("addmember"))
     return render_template('addmember.html')
 
 # Members list
