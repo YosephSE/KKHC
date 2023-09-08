@@ -268,6 +268,17 @@ def member(id):
 
     return render_template("memberdetail.html", member = member)
 
+
+@app.route("/member/<int:id>/edit", methods=['GET', 'POST'])
+def editmember(id):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * from memberinfo where id = {id}")
+    member = cur.fetchall()
+    member = member[0]
+    cur.close()
+    return render_template('editmember.html', member = member)
+    
+
 # Children list
 @app.route("/children")
 def children():
