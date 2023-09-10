@@ -12,11 +12,17 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
 # Connect to MYSQL database
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1212'
-app.config['MYSQL_DB'] = 'kkhc'
-# app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_HOST'] = 'sql3.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql3644470'
+app.config['MYSQL_DB'] = 'sql3644470'
+app.config['MYSQL_PASSWORD'] = '2g2yv7IxjY'
+app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_DB'] = 'kkhc'
+# Host: sql3.freesqldatabase.com
+# Database name: sql3644470
+# Database user: sql3644470
+# Database password: 2g2yv7IxjY
+# Port number: 3306
 
 # Initialize the Connection
 mysql = MySQL(app)
@@ -244,7 +250,7 @@ def members():
 # Add new children
 @app.route("/newchild", methods=["GET", "POST"])
 def newchild():
-    return "newchild"
+    return render_template("newchild.html")
 
 
 # Analysis

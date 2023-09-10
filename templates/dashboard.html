@@ -24,6 +24,9 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100&family=Noto+Sans+Ethiopic:wght@300&display=swap" rel="stylesheet">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='assets/css/paper-dashboard.css') }}" rel="stylesheet" />
@@ -174,7 +177,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                       <div class="numbers">
-                        <p class="card-category">በቤተክርስቲያን ውስጥ ያሉ</p>
+                        <p class="card-category">በቤ/ክን ውስጥ ያሉ</p>
                         <p class="card-title">{{activemembers}}</p>
                         <p></p>
                       </div>
@@ -300,7 +303,7 @@
             </div>
             <div class="col-md-4">
               <!-- add the html link below in the anchor tag -->
-              <a href="addmember" class="dash-anch">
+              <a href="newchild" class="dash-anch">
                 <div class="card dash-anch">
                   <div class="card-body">
                     <i class="nc-icon nc-simple-add"></i>
