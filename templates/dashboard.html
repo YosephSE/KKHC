@@ -24,6 +24,9 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100&family=Noto+Sans+Ethiopic:wght@300&display=swap" rel="stylesheet">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='assets/css/paper-dashboard.css') }}" rel="stylesheet" />
@@ -64,15 +67,27 @@
               </a>
             </li>
             <li>
-              <a href="analysis">
-                <i class="nc-icon nc-chart-bar-32"></i>
-                <p>አናለይሲስ ይስሩ</p>
-              </a>
-            </li>
-            <li>
               <a href="members">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የአባላት ዝርዝር</p>
+              </a>
+            </li>
+            <li>
+              <a href="addchild">
+                <i class="nc-icon nc-simple-add"></i>
+                <p>ልጆችን ይጨምሩ</p>
+              </a>
+            </li>
+            <li>
+              <a href="children">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>የልጆች ዝርዝር</p>
+              </a>
+            </li>
+            <li>
+              <a href="analysis">
+                <i class="nc-icon nc-chart-bar-32"></i>
+                <p>አናለይሲስ ይስሩ</p>
               </a>
             </li>
           </ul>
@@ -174,7 +189,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                       <div class="numbers">
-                        <p class="card-category">በቤተክርስቲያን ውስጥ ያሉ</p>
+                        <p class="card-category">በቤ/ክን ውስጥ ያሉ</p>
                         <p class="card-title">{{activemembers}}</p>
                         <p></p>
                       </div>
@@ -300,7 +315,7 @@
             </div>
             <div class="col-md-4">
               <!-- add the html link below in the anchor tag -->
-              <a href="addmember" class="dash-anch">
+              <a href="addchild" class="dash-anch">
                 <div class="card dash-anch">
                   <div class="card-body">
                     <i class="nc-icon nc-simple-add"></i>
@@ -309,6 +324,21 @@
                   <div class="card-footer">
                     <h5 class="card-title">ልጆችን ይጨምሩ</h5>
                     <p class="card-category">Add Children</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <!-- add the html link below in the anchor tag -->
+              <a href="children" class="dash-anch">
+                <div class="card dash-anch">
+                  <div class="card-body">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <!-- <canvas id="chartEmail"></canvas> -->
+                  </div>
+                  <div class="card-footer">
+                    <h5 class="card-title">የልጆች ዝርዝር</h5>
+                    <p class="card-category">Members list</p>
                   </div>
                 </div>
               </a>
@@ -328,21 +358,7 @@
                 </div>
               </a>
             </div>
-            <div class="col-md-4">
-              <!-- add the html link below in the anchor tag -->
-              <a href="addmember" class="dash-anch">
-                <div class="card dash-anch">
-                  <div class="card-body">
-                    <i class="nc-icon nc-simple-add"></i>
-                    <!-- <canvas id="chartEmail"></canvas> -->
-                  </div>
-                  <div class="card-footer">
-                    <h5 class="card-title">አባላት ይጨምሩ</h5>
-                    <p class="card-category">Add Member</p>
-                  </div>
-                </div>
-              </a>
-            </div>
+            
 
           </div>
         </div>

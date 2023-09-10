@@ -23,6 +23,9 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100&family=Noto+Sans+Ethiopic:wght@300&display=swap" rel="stylesheet">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='assets/css/paper-dashboard.css') }}" rel="stylesheet" />
@@ -36,15 +39,17 @@
         <div class="logo">
           <a href="/" class="simple-text logo-mini">
             <div class="logo-image-small">
-              <img src="{{ url_for('static', filename='assets/img/logo-small.png') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/img/logo-small.png') }}"
+              />
             </div>
             <!-- <p>CT</p> -->
           </a>
           <a href="/" class="simple-text logo-normal">
             Welcome, {{session["username"]}}
             <!-- <div class="logo-image-big">
-          <img src="../assets/img/logo-big.png">
-        </div> -->
+            <img src="../assets/img/logo-big.png">
+          </div> -->
           </a>
         </div>
         <div class="sidebar-wrapper">
@@ -55,22 +60,34 @@
                 <p>ዋና ማውጫ</p>
               </a>
             </li>
-            <li>
+            <li class="">
               <a href="addmember">
                 <i class="nc-icon nc-simple-add"></i>
                 <p>አባላት ይጨምሩ</p>
-              </a>
-            </li>
-            <li class="active">
-              <a href="analysis">
-                <i class="nc-icon nc-chart-bar-32"></i>
-                <p>አናለይሲስ ይስሩ</p>
               </a>
             </li>
             <li>
               <a href="members">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የአባላት ዝርዝር</p>
+              </a>
+            </li>
+            <li>
+              <a href="addchild">
+                <i class="nc-icon nc-simple-add"></i>
+                <p>ልጆችን ይጨምሩ</p>
+              </a>
+            </li>
+            <li>
+              <a href="children">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>የልጆች ዝርዝር</p>
+              </a>
+            </li>
+            <li class="active">
+              <a href="analysis">
+                <i class="nc-icon nc-chart-bar-32"></i>
+                <p>አናለይሲስ ይስሩ</p>
               </a>
             </li>
           </ul>
