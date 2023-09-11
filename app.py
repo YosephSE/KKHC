@@ -119,6 +119,8 @@ def addmember():
             l_name = request.form["l_name"]
             sex = request.form["sex"]
             dob = request.form["dob"]
+            mob = request.form["mob"]
+            yob = request.form["yob"]
             handicap = request.form['handicap']
             if handicap == 'false':
                 handicap = 0
@@ -132,9 +134,13 @@ def addmember():
             phone = request.form['phoneNumber1']
             homephone = request.form['phoneNumber2']
             email = request.form["email"]
-            bap_date = request.form["bap_date"]
+            dobaptism = request.form["dobaptism"]
+            mobaptism = request.form["mobaptism"]
+            yobaptism = request.form["yobaptism"]
             bap_where = request.form["bap_where"]
-            mem_date = request.form["mem_date"]
+            domembership = request.form["domembership"]
+            momembership = request.form["momembership"]
+            yomembership = request.form["yomembership"]
             inchurch = request.form["inchurch"]
             if inchurch == 'false':
                 inchurch = 0
@@ -151,8 +157,8 @@ def addmember():
                     service[request.form["prayer"]] = request.form['status3']
                 if 'youth' in request.form:
                     service[request.form["youth"]] = request.form['status4']
-                if 'girls' in request.form:
-                    service[request.form["girls"]] = request.form['status5']
+                if 'sisters' in request.form:
+                    service[request.form["sisters"]] = request.form['status5']
                 if 'outreach' in request.form:
                     service[request.form["outreach"]] = request.form['status6']
                 if 'deacon' in request.form:
@@ -175,7 +181,6 @@ def addmember():
                 responsibility = request.form["responsibility"]
                 profession = request.form['profession']
                 talent = request.form["talent"]
-                print(work_stats, work_type, responsibility, profession, talent)
             else:
                 work_stats = 0
             mstats = request.form['mstats']
