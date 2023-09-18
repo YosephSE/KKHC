@@ -185,11 +185,19 @@ def addmember():
                 work_stats = 0
             mstats = request.form['mstats']
             if mstats == "true":
-                sFName = request.form['sFName']
-                sMName = request.form['sMName']
-                sLName = request.form['sLName']
-                shere = request.form['shere']
-            
+                stitle = request.form['stitle']
+                sFName = request.form['sfname']
+                sMName = request.form['smname']
+                sLName = request.form['slname']
+                sphoneNumber = request.form['sphoneNumber']
+                semail = request.form['semail']
+                merdate, mermonth, meryear = request.form['merdate'], request.form['mermonth'], request.form['meryear']
+                sdob, smob, syob = request.form['sdob'], request.form['smob'], request.form['syob']
+                sinchurch = request.form['sinchurch']
+                sinthischurch = request.form['here'] # memberinfo insert will depend on this
+                schurch = request.form['schurch']
+
+
             
         except KeyError as e:
             flash(f"Missing or incorrect form field: {e}")
@@ -201,7 +209,7 @@ def addmember():
 
         try:
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
+            cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, mob, yob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
             mysql.connection.commit()
             cur.execute("SELECT id FROM memberinfo WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
             userid = cur.fetchall()
@@ -244,7 +252,7 @@ def members():
         # today = datetime.today()
         # today = today.strftime('%Y-%m-%d')
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo LEFT JOIN churchinfo ON id = memberid")
+    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo INNER JOIN churchinfo ON memberinfo.id = churchinfo.memberid")
     members = cur.fetchall()
     cur.close()
     return render_template('memberslist.html', members = members)
@@ -253,35 +261,140 @@ def members():
 # Add new children
 @app.route("/addchild", methods=["GET", "POST"])
 def addchild():
+    if not auth():
+        return redirect(url_for("login"))
+    if request.method == 'POST':
+        try:
+            f_name = request.form["f_name"]
+            m_name = request.form["m_name"]
+            l_name = request.form["l_name"]
+            sex = request.form["sex"]
+            dob = request.form["dob"]
+            mob = request.form["mob"]
+            yob = request.form["yob"]
+            dvbs = request.form['dvbs_edu_status_list']
+            sunday = request.form['sunday']
+            grade = request.form['grade_level']
+            parent = request.form['parent_here']
+            if parent == 'true':
+                father = request.form['parent1_fo_key']
+                mother = request.form['parent2_fo_key']
+            else:
+                father = request.form['father_n']
+                mother = request.form['mother_n']
+                church = request.form['parent_church']
+                motherphone = request.form['mphoneNumber']
+                fatherphone = request.form['fphoneNumber']
+        except Exception as e:
+            flash(f"Missing: {e}")
+            redirect(url_for("addchild"))
+
+        try:
+            cur = mysql.connection.cursor()
+            if parent == 'true':
+                cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, motherid, fatherid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father))
+            else:
+                cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, mothername, fathername, familychurch, motherphone, fatherphone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father, church, motherphone, fatherphone))
+            mysql.connection.commit()
+        except Exception as e:
+            flash(f'Internal Server Error: {e}')
+            redirect(url_for("addchild"))
+        
     return render_template("addchild.html")
 
 
 # Analysis
 @app.route("/analysis")
 def analysis():
-    return render_template("analysis.html")
+    if not auth():
+        return redirect(url_for("login"))
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT COUNT(id) FROM memberinfo")
+        memberscount = cur.fetchall()
+        memberscount = memberscount[0][0]
+        cur.execute("SELECT COUNT(id) FROM children")
+        childrencount = cur.fetchall()
+        childrencount = childrencount[0][0]
+        cur.execute("SELECT COUNT(memberid) FROM churchinfo WHERE churchrelationship = 1")
+        activemembers = cur.fetchall()
+        activemembers = activemembers[0][0]
+        cur.close()
+    except Exception as e:
+        flash(f'Server error: {e}')
+        return redirect(url_for('admin'))
+        
+    return render_template("analysis.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
+
 
 # Members detail stats
 @app.route("/member/<int:id>", methods=['GET', 'POST'])
 def member(id):
     try:
         cur = mysql.connection.cursor()
-        cur.execute(f"SELECT * from memberinfo left join churchinfo on id = memberid where id = {id}")
-        member = cur.fetchall()
-        member = member[0]
+        cur.execute(f"SELECT * from memberinfo inner join churchinfo on memberinfo.id = churchinfo.memberid  left join education on memberinfo.id = education.memberid inner join workinfo on memberinfo.id = workinfo.memberid where memberinfo.id = {id}")
+        member = cur.fetchall()[0]
+        cur = mysql.connection.cursor()
+        cur.execute(f"select service, isactive from serviceinfo inner join services on serviceid = services.id where memberid = {id}")
+        services = cur.fetchall()
+        cur.close()
+
+        try:
+            # Marriage info
+            cur = mysql.connection.cursor()
+            cur.execute(f"select id, husband_id, wife_id, weddingdate, weddingmonth, weddingyear from marriage where husband_id = {id} or wife_id = {id}")
+            mstat = cur.fetchall()[0]
+            cur.close()
+            # Checks if both are in this church
+            if mstat[1] != None and mstat[2] != None:
+                # Checks if the member is husband or wife
+                if mstat[1] == id:
+                    cur = mysql.connection.cursor()
+                    cur.execute(f"SELECT id, firstname, middlename FROM memberinfo WHERE id = {mstat[2]}")
+                    spouse = cur.fetchall()[0]
+                    cur.close()
+                elif mstat[2] == id:
+                    cur = mysql.connection.cursor()
+                    cur.execute(f"SELECT id, firstname, middlename FROM memberinfo WHERE id = {mstat[1]}")
+                    spouse = cur.fetchall()[0]
+                    cur.close()
+            # if one of them are not in church
+            elif mstat[1] == None or mstat[2] == None:
+                cur = mysql.connection.cursor()
+                cur.execute(f"SELECT spousefname, spousemname, spouseinchurch, spousechurch FROM marriage WHERE id = {mstat[0]}")
+                spouse = cur.fetchall()[0]
+                print(spouse)  
+        except IndexError:
+            mstat = None
+            spouse = None
+        except Exception as e:
+            flash(f"Error occured: {e}")
+            mstat = None
+            spouse = None
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute(f"select firstname, middlename, lastname from children where motherid = {id} or fatherid = {id}")
+            children = cur.fetchall()
+            cur.close()
+        except IndexError:
+            children = None
+        except Exception:
+            children = None
         cur.close()
     except IndexError:
+        flash("USER NOT FOUND!")
         return redirect('../members')
     except Exception as e:
-        return f"Error occured: {e}"
+        flash(f"Error occured: {e}")
+        return redirect('../members')
 
-    return render_template("memberdetail.html", member = member)
+    return render_template("memberdetail.html", member = member, mstat = mstat, services = services, children = children, spouse = spouse)
 
 
 @app.route("/member/<int:id>/edit", methods=['GET', 'POST'])
 def editmember(id):
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * from memberinfo where id = {id}")
+    cur.execute(f"SELECT * from memberinfo inner join serviceinfo on memberinfo.id = memberid where memberinfo.id = {id}")
     member = cur.fetchall()
     member = member[0]
     cur.close()
@@ -291,7 +404,10 @@ def editmember(id):
 # Children list
 @app.route("/children")
 def children():
-    return "Children list"
+    cur = mysql.connection.cursor()
+    cur.execute("select * from children")
+    children = cur.fetchall()
+    return render_template("childrenlist.html", children = children)
 
 
 if __name__ == "__main__":
