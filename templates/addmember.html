@@ -1183,6 +1183,21 @@
                       </div>
                     </div>
                     <div class="maritial_bool" id="maritalStatus">
+                      <div class="file_upload">
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label"
+                            >Profile Picture</label
+                          >
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="fileToUpload"
+                            type="file"
+                            name="profile"
+                            accept="image/*"
+                          />
+                        </div>
+                      </div>
                       <div class="row">
                         <div class="col-md-1 px-1">
                           <div class="form-group">
@@ -1210,7 +1225,7 @@
                               type="text"
                               class="form-control"
                               id="sf_name"
-                              name="sf_name"
+                              name="sfname"
                               placeholder="ስም"
                               maxlength="100"
                               required
@@ -1224,7 +1239,7 @@
                               type="text"
                               class="form-control"
                               id="sm_name"
-                              name="sm_name"
+                              name="smname"
                               placeholder="የአባት ስም"
                               maxlength="100"
                               required
@@ -1237,7 +1252,7 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="sl_name"
+                              id="slname"
                               name="sl_name"
                               placeholder="የአያት ስም"
                               maxlength="100"
@@ -1347,7 +1362,7 @@
                                 <input
                                   type="number"
                                   id="sdob"
-                                  name="dob"
+                                  name="sdob"
                                   min="1"
                                   max="30"
                                   step="1"
@@ -1361,7 +1376,7 @@
                                 <input
                                   type="number"
                                   id="smob"
-                                  name="mob"
+                                  name="smob"
                                   min="1"
                                   max="12"
                                   step="1"
@@ -1375,7 +1390,7 @@
                                 <input
                                   type="number"
                                   id="syob"
-                                  name="yob"
+                                  name="syob"
                                   min="1900"
                                   max="2099"
                                   step="1"
@@ -1400,7 +1415,7 @@
                               >
                                 <input
                                   type="radio"
-                                  name="shere"
+                                  name="sinchurch"
                                   value="true"
                                   id="sHereT"
                                   class="custom-control-input"
@@ -1414,7 +1429,7 @@
                               >
                                 <input
                                   type="radio"
-                                  name="shere"
+                                  name="sinchurch"
                                   value="false"
                                   id="sHereF"
                                   class="custom-control-input"
@@ -1458,7 +1473,7 @@
                                     >አይ</label
                                   >
                                 </div>
-                                <!-- if they are not in this church -->
+                                <!-- if they are in this church -->
                                 <div class="yes_ifhere" id="yesIfHere">
                                   <div class="row">
                                     <div class="col-md-4">
@@ -2163,6 +2178,7 @@
                                       id="whereAreThey"
                                       maxlength="100"
                                       class="form-control"
+                                      name="schurch"
                                     />
                                   </label>
                                 </div>

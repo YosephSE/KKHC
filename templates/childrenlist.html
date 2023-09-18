@@ -10,7 +10,7 @@
     />
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Members List</title>
+    <title>KKHC | Children List</title>
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
       name="viewport"
@@ -67,7 +67,7 @@
                 <p>አባላት ይጨምሩ</p>
               </a>
             </li>
-            <li class="active">
+            <li class="">
               <a href="members">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የአባላት ዝርዝር</p>
@@ -79,7 +79,7 @@
                 <p>ልጆችን ይጨምሩ</p>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="children">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የልጆች ዝርዝር</p>
@@ -153,7 +153,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">የአባላት ዝርዝር</h4>
+                  <h4 class="card-title">የልጆች ዝርዝር</h4>
                 </div>
                 {% for message in get_flashed_messages() %}
                   <div
@@ -177,30 +177,32 @@
                       <thead class="text-primary">
                         <th>ፎቶግራፍ</th>
                         <th>ስም</th>
-                        <th>ክፍለ-ከተማ</th>
+                        <th>SSC</th>
                         <th>ስልክ</th>
                         <th class="text-right">Status</th>
                         
                       </thead>
                       <tbody>
                         
-                        {% for member in members %}
+                        {% for child in children %}
                         <tr>
-                          {% set pic = 'Attachments/' + member[0]|string + '.jpg' %}
-                          {% set url = 'member/' + member[0]|string %}
+                         
+                          {% set url = 'child/' + child[0]|string %}
+                          {{child}}
                           
 
-                          <td><img src="{{ url_for('static', filename=pic) }}" class="img-circle img-no-padding img-responsive avatar" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo"></td>
-                          <td><a href="{{url}}">{{member[1] +' '+ member[2] +' '+ member[3]}}</a></td>
-                          <td>{{member[4]}}</td>
-                          <td>{{member[5]}}</td>
-                          {% if member[6] == 1 %}
+                          <td><img src="../static/img/child.png" class="img-circle img-no-padding img-responsive avatar" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo"></td>
+                          <td><a href="{{url}}">{{child[1] +' '+ child[2] +' '+ child[3]}}</a></td>
+                          <td>{{child[8]}}</td>
+                          <td>{{child[5]}}</td>
+                          <!-- {% if child[6] == 1 %}
                           <td class="text-right"><button class="btn btn-success">Active</button></td>
                           {% endif %}
-                          {% if member[6] == 0 %}
+                          {% if child[6] == 0 %}
                           <td class="text-right"><button class="btn btn-danger">InActive</button></td>
                           {% endif %}
-                        </tr>
+                        </tr> -->
+                        <td>{{child[6]}}</td>
                         {% endfor %}
                         
                       </tbody>

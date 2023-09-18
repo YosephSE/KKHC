@@ -193,6 +193,7 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">የቤተሰብ አባላት</h4>
+                  <h4 class="card-title">{{mstat}}</h4>
                 </div>
                 <div class="card-body">
                   <ul class="list-unstyled team-members">
@@ -322,7 +323,6 @@
                           <span class="h6 fw-normal ms-1 mb-0">{{member[29]}}</span>
                         </li>
                         {% endif %}
-                        {% if member[32] == 1: %}
                         <li class="list-group-item mb-3">
                           <span>የስራ አይነት:</span>
                           <span class="h6 fw-normal ms-1 mb-0">{{member[33]}}</span>
@@ -343,8 +343,7 @@
                           <span>ቤተክርስትያን የምትጠቀምበት ችሎታ:</span>
                           <span class="h6 fw-normal ms-1 mb-0">{{member[37]}}</span>
                         </li>
-                        {% endif %}
-                        {% if mstat == None: %}
+                        {% if mstat == 0: %}
                         <li class="list-group-item mb-3">
                           <span>የትዳር ሁኔታ:</span>
                           <span class="h6 fw-normal ms-1 mb-0">ያላገባ</span>
@@ -360,22 +359,16 @@
                           <span class="h6 fw-normal ms-1 mb-0">{{spouse[1] + " " + spouse[2]}}</span>
                         </li>
                         {% endif %}
-                        {% if spouse != None and mstat[1] != None or mstat[2] != None: %}
-                        <li class="list-group-item mb-3">
-                          <span>የባለቤት ሙሉ ስም:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{spouse[0] + " " + spouse[1]}}</span>
-                        </li>
-                        {% endif %}
                         <li class="list-group-item mb-3">
                           <span>የጋብቻ ቀን:</span>
                           <span class="h6 fw-normal ms-1 mb-0">{{mstat[3]}}/{{mstat[4]}}/{{mstat[5]}}</span>
                         </li>
-                          {% if spouse[2] == '1' %}
+                          {% if mstat[3] == '1' %}
                           <li class="list-group-item mb-3">
                             <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">አዎ, {{spouse[3]}}</span>
+                          <span class="h6 fw-normal ms-1 mb-0">አዎ</span>
                         </li>
-                          {% elif spouse[2] == '0' %}
+                          {% elif mstat[3] == '0' %}
                           <li class="list-group-item mb-3">
                             <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?:</span>
                           <span class="h6 fw-normal ms-1 mb-0">አይ</span>

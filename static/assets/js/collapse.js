@@ -146,7 +146,7 @@ const marriedForm = document.getElementById('maritalStatus');
 
 mStatusRadio.forEach(radio => {
     radio.addEventListener('change', function(){
-        const spauseInChurchRadio = document.querySelectorAll('input[name="shere"]');
+        const spauseInChurchRadio = document.querySelectorAll('input[name="sinchurch"]');
         const ifHereOpt = document.getElementById('ifHere');
         if (this.value === 'true') {
             marriedForm.classList.remove('maritial_bool');

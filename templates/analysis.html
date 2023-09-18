@@ -8,8 +8,9 @@
       href="{{ url_for('static', filename='assets/img/apple-icon.png') }}"
     />
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Analysis</title>
+    <title>KKHC | Admin Panel</title>
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
       name="viewport"
@@ -31,6 +32,7 @@
     <link href="{{ url_for('static', filename='assets/css/paper-dashboard.css') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ url_for('static', filename='assets/demo/demo.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/mycss.css') }}" />
   </head>
 
   <body class="">
@@ -39,28 +41,26 @@
         <div class="logo">
           <a href="/" class="simple-text logo-mini">
             <div class="logo-image-small">
-              <img
-                src="{{ url_for('static', filename='assets/img/logo-small.png') }}"
-              />
+              <img src="{{ url_for('static', filename='assets/img/logo-small.png') }}" />
             </div>
             <!-- <p>CT</p> -->
           </a>
           <a href="/" class="simple-text logo-normal">
             Welcome, {{session["username"]}}
             <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
+          <img src="../assets/img/logo-big.png">
+        </div> -->
           </a>
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li>
+            <li class="">
               <a href="admin">
                 <i class="nc-icon nc-bank"></i>
                 <p>ዋና ማውጫ</p>
               </a>
             </li>
-            <li class="">
+            <li>
               <a href="addmember">
                 <i class="nc-icon nc-simple-add"></i>
                 <p>አባላት ይጨምሩ</p>
@@ -149,82 +149,154 @@
         <!-- End Navbar -->
         <div class="content">
           <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">የአባላት ቁጥር</h5>
-                  <p class="card-category"></p>
-                </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats dash-anch">
                 <div class="card-body">
-                  <canvas id="chartHours" width="400" height="100"></canvas>
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <i class="nc-icon nc-globe text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">ጠቅላላ የአባላት ቁጥር</p>
+                        <p class="card-title">{{memberscount}}</p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-footer">
                   <hr />
-                  <div class="stats">
-                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                  <a href="/analysis">
+                    <div class="stats">
+                      <i class="fa fa-refresh"></i>
+                      Update Now
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats dash-anch">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <i class="nc-icon nc-money-coins text-success"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">በቤ/ክን ውስጥ ያሉ</p>
+                        <p class="card-title">{{activemembers}}</p>
+                        <p></p>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  <a href="/analysis">
+                    <div class="stats">
+                      <i class="fa fa-refresh"></i>
+                      Update Now
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats dash-anch">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <i class="nc-icon nc-vector text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">የልጆች ብዛት</p>
+                        <p class="card-title">{{childrencount}}</p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  <a href="/analysis">
+                    <div class="stats">
+                      <i class="fa fa-refresh"></i>
+                      Update Now
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats dash-anch">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <i class="nc-icon nc-favourite-28 text-primary"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">ወጣቶች</p>
+                        <p class="card-title">0</p>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <hr />
+                  <a href="/analysis">
+                    <div class="stats">
+                      <i class="fa fa-refresh"></i>
+                      Update Now
+                    </div>
+                  </a>
+                  
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">አባላት</h5>
-                  <p class="card-category"></p>
-                </div>
-                <div class="card-body">
-                  <canvas id="chartEmail"></canvas>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-primary"></i> እየሰሩ ያሉ
-                    <i class="fa fa-circle text-warning"></i> የተቅዛቀዙ
-                    <i class="fa fa-circle text-danger"></i> የተሰረዙ
-                    <i class="fa fa-circle text-gray"></i> የማይሰሩ
-                  </div>
-                  <hr />
-                  <div class="stats">
-                    <i class="fa fa-number"></i> አጠቃላይ የአገልግሎት ዘርፎች
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card card-chart">
-                <div class="card-header">
-                  <h5 class="card-title">የልጆች እና የወጣቶች አገልግሎት</h5>
-                  <p class="card-category">ዉስጥ የታቅፉ ሰዎች ብዛት</p>
-                </div>
-                <div class="card-body">
-                  <canvas id="speedChart" width="400" height="100"></canvas>
-                </div>
-                <div class="card-footer">
-                  <div class="chart-legend">
-                    <i class="fa fa-circle text-info"></i> የልጆች አገልግሎት
-                    <i class="fa fa-circle text-warning"></i> የወጣቶች አገልግሎት
-                  </div>
-                  <hr />
-                  <div class="card-stats">
-                    <i class="fa fa-check"></i> Data information certified
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="main-panel">
+        
+      </div>
+          
         </div>
+        
+        <footer class="footer footer-black footer-white">
+          <div class="credits ml-auto">
+            <span class="copyright">
+              ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              KKHC IT Team 
+            </span>
+          </div>
+        </footer>
       </div>
     </div>
+    <!--   Core JS Files   -->
     <script src="{{ url_for('static', filename='assets/js/core/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-    
+    <!--  Google Maps Plugin    -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chart JS -->
     <script src="{{ url_for('static', filename='assets/js/plugins/chartjs.min.js') }}"></script>
     <!--  Notifications Plugin    -->
-    <script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/img/apple-icon.png') }}"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script
       src="{{ url_for('static', filename='assets/js/paper-dashboard.min.js') }}"
@@ -232,11 +304,6 @@
     ></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
-    <script>
-      $(document).ready(function () {
-        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-        demo.initChartsPages();
-      });
-    </script>
+
   </body>
 </html>
