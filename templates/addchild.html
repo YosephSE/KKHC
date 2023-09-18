@@ -14,7 +14,7 @@
       type="image/x-icon"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Add member</title>
+    <title>KKHC | Add Child</title>
     <!--     Fonts and icons     -->
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -171,8 +171,24 @@
                 <div class="card-header">
                   <h5 class="card-title">የልጆች መጨመርያ ፎርም</h5>
                 </div>
+                {% for message in get_flashed_messages() %}
+                  <div
+                    class="alert alert-warning alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {{message}}
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="alert"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endfor %}
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="/addchild">
                     <div class="row user-raw">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -252,13 +268,13 @@
                             />
                           </div>
                           <div class="col--md-4">
-                            <label for="mob">:</label>
+                            <label for="mob">ወር:</label>
                             <input
                               type="number"
                               id="mob"
                               name="mob"
                               min="1"
-                              max="12"
+                              max="13"
                               step="1"
                               class="form-control"
                               placeholder="ወር"
@@ -266,7 +282,7 @@
                             />
                           </div>
                           <div class="col-5">
-                            <label for="yob">:</label>
+                            <label for="yob">ዓ.ም:</label>
                             <input
                               type="number"
                               id="yob"
@@ -281,9 +297,9 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-3 hand-radio-flex">
-                        <div class="row">
-                          <div class="form-group">
+                      
+                        
+                          <!-- <div class="form-group">
                             <span class="handicap">የአካል ጉዳት</span>
                             <div
                               class="custom-control custom-radio custom-control-inline"
@@ -314,11 +330,11 @@
                                 >አይ</label
                               >
                             </div>
-                          </div>
-                        </div>
-                      </div>
+                          </div> -->
+                        
+                      
                     </div>
-                    <div class="row user-row">
+                    <!-- <div class="row user-row">
                       <div class="col-md-12 px-1">
                         <div id="handicapDescription" class="handicap_desc">
                           <label for="description">የአካል ጉዳት አይነት:</label>
@@ -330,9 +346,9 @@
                           ></textarea>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <!-- address staff -->
-                    <div class="row user-raw">
+                    <!-- <div class="row user-raw">
                       <div class="col-md-4 px-1">
                         <div class="row">
                           <div class="col-md-4 subcity-size">
@@ -344,7 +360,7 @@
                                 class="form-control"
                               >
                                 <option value="lemikura">ለሚ ኩራ</option>
-                                <!-- Add more options as needed -->
+                                
                               </select>
                             </div>
                           </div>
@@ -357,7 +373,7 @@
                                 class="form-control"
                               >
                                 <option value="1">1</option>
-                                <!-- Add more options as needed -->
+                               
                               </select>
                             </div>
                           </div>
@@ -388,7 +404,7 @@
                           />
                         </div>
                       </div>
-                      <!-- email -->
+                      
                       <div class="col-md-4 email-input">
                         <div class="form-group">
                           <label>ኢ-ሜይል</label>
@@ -401,9 +417,9 @@
                           />
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <!-- phone number -->
-                    <div class="col-md-12 px-1">
+                    <!-- <div class="col-md-12 px-1">
                       <div class="row">
                         <div class="col-md-2 opt-pho-no">
                           <div class="form-group">
@@ -414,7 +430,7 @@
                               class="form-control"
                             >
                               <option value="eth">+251</option>
-                              <!-- Add more options as needed -->
+                              
                             </select>
                           </div>
                         </div>
@@ -435,7 +451,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -474,25 +490,25 @@
                     <div class="row parenthere" id="parentHere">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="parent1">የአባት መለያ ቁጥር</label>
+                          <label for="parent1">የአባት ስም</label>
                           <input
                           type="text"
                             name="parent1_fo_key"
                             id="parent1"
                             class="form-control"
-                            placeholder="XXXXXXXXXXX"
+                            placeholder="የአባት ስም"
                           />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="parent2">የእናት መለያ ቁጥር</label>
+                          <label for="parent2">የእናት ስም</label>
                           <input
                             type="text"
                             name="parent2_fo_key"
                             id="parent2"
                             class="form-control"
-                            placeholder="XXXXXXXXXXX"
+                            placeholder="የእናት ስም"
                           />
                         </div>
                       </div>
@@ -511,7 +527,7 @@
                                   name="mother_n"
                                   placeholder="ስም"
                                   maxlength="100"
-                                  required
+                                  
                                 />
                               </div>
                             </div>
@@ -525,7 +541,7 @@
                                   name="father_n"
                                   placeholder="የአባት ስም"
                                   maxlength="100"
-                                  required
+                                  
                                 />
                               </div>
                             </div>
@@ -539,7 +555,7 @@
                                   name="parent_church"
                                   placeholder="የአያት ስም"
                                   maxlength="100"
-                                  required
+                                  
                                 />
                               </div>
                             </div>
@@ -566,10 +582,9 @@
                                         <input
                                           type="tel"
                                           id="mphoneNumber1"
-                                          name="phoneNumber"
+                                          name="mphoneNumber"
                                           class="form-control"
                                           pattern="[0-9]{9}"
-                                          required
                                           maxlength="9"
                                         />
                                         <p class="error-msg" id="phno-err-msg1"></p>
@@ -595,7 +610,8 @@
                                         <input
                                           type="tel"
                                           id="fphoneNumber2"
-                                          name="phoneNumber"
+                                          name="fphoneNumber"
+                                          maxlength="9"
                                           class="form-control"
                                           pattern="[0-9]{9}"
                                         />
@@ -652,7 +668,7 @@
                     <div class="row">
                       <div class="update ml-auto mr-auto">
                         <button type="submit" class="btn btn-primary btn-round">
-                          ላክ
+                          አስገባ
                         </button>
                       </div>
                     </div>
