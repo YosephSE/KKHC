@@ -12,15 +12,15 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
 # Connect to MYSQL database
-# app.config['MYSQL_HOST'] = 'sql3.freesqldatabase.com'
-# app.config['MYSQL_USER'] = 'sql3644470'
-# app.config['MYSQL_DB'] = 'sql3644470'
-# app.config['MYSQL_PASSWORD'] = '2g2yv7IxjY'
-# app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'Yoseph'
-app.config['MYSQL_DB'] = 'kkhc'
-app.config['MYSQL_PASSWORD'] = '1212'
+app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql9647331'
+app.config['MYSQL_DB'] = 'sql9647331'
+app.config['MYSQL_PASSWORD'] = '3TWIARJRNk'
+app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'Yoseph'
+# app.config['MYSQL_DB'] = 'kkhc'
+# app.config['MYSQL_PASSWORD'] = '1212'
 
 # Initialize the Connection
 mysql = MySQL(app)
@@ -363,7 +363,7 @@ def member(id):
                 cur = mysql.connection.cursor()
                 cur.execute(f"SELECT spousefname, spousemname, spouseinchurch, spousechurch FROM marriage WHERE id = {mstat[0]}")
                 spouse = cur.fetchall()[0]
-                print(spouse)  
+                # print(spouse)
         except IndexError:
             mstat = None
             spouse = None
@@ -394,9 +394,9 @@ def member(id):
 @app.route("/member/<int:id>/edit", methods=['GET', 'POST'])
 def editmember(id):
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * from memberinfo inner join serviceinfo on memberinfo.id = memberid where memberinfo.id = {id}")
-    member = cur.fetchall()
-    member = member[0]
+    cur.execute(f"SELECT * from memberinfo where memberinfo.id = {id}")
+    member = cur.fetchall()[0]
+    # member = member[0]
     cur.close()
     return render_template('editmember.html', member = member)
     
@@ -409,7 +409,16 @@ def children():
     children = cur.fetchall()
     return render_template("childrenlist.html", children = children)
 
+# @app.route("/child/<int:id>", methods=['GET', 'POST'])
+# def child(id):
+#     cur = mysql.connection.cursor()
+#     cur.execute(f"SELECT * from memberinfo inner join serviceinfo on memberinfo.id = memberid where memberinfo.id = {id}")
+#     member = cur.fetchall()
+#     member = member[0]
+#     cur.close()
+#     return render_template('childDetail.html', member = member)
 
+    
 if __name__ == "__main__":
     app.run(debug=True)
 

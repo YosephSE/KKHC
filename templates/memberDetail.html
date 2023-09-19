@@ -360,7 +360,7 @@
                           <span class="h6 fw-normal ms-1 mb-0">{{spouse[1] + " " + spouse[2]}}</span>
                         </li>
                         {% endif %}
-                        {% if spouse != None and mstat[1] != None or mstat[2] != None: %}
+                        {% if spouse != None and mstat[1] == None or mstat[2] == None: %}
                         <li class="list-group-item mb-3">
                           <span>የባለቤት ሙሉ ስም:</span>
                           <span class="h6 fw-normal ms-1 mb-0">{{spouse[0] + " " + spouse[1]}}</span>
