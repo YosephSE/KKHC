@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, session, flash
+from flask import Flask, request, render_template, redirect, url_for, session, flash, jsonify
 from flask_mysqldb import MySQL
 import os
 from datetime import datetime
@@ -12,15 +12,16 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
 # Connect to MYSQL database
-app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
-app.config['MYSQL_USER'] = 'sql9647331'
-app.config['MYSQL_DB'] = 'sql9647331'
-app.config['MYSQL_PASSWORD'] = '3TWIARJRNk'
-app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'Yoseph'
-# app.config['MYSQL_DB'] = 'kkhc'
-# app.config['MYSQL_PASSWORD'] = '1212'
+# app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
+# app.config['MYSQL_USER'] = 'sql9647331'
+# app.config['MYSQL_DB'] = 'sql9647331'
+# app.config['MYSQL_PASSWORD'] = '3TWIARJRNk'
+# app.config['MYSQL_PORT'] = 3306
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "Yoseph"
+app.config["MYSQL_PASSWORD"] = "1212"
+app.config["MYSQL_DB"] = "kkhc"
+# app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 # Initialize the Connection
 mysql = MySQL(app)
@@ -69,12 +70,20 @@ def admin():
         cur.execute("SELECT COUNT(memberid) FROM churchinfo WHERE churchrelationship = 1")
         activemembers = cur.fetchall()
         activemembers = activemembers[0][0]
+        if datetime.now().month > 8:
+            year = datetime.now().year - 7
+        else:
+            year = datetime.now().year - 8
+        upperbound = year - 15
+        lowerbound = year - 35
+        cur.execute(f"SELECT COUNT(id) from memberinfo WHERE birthyear BETWEEN {lowerbound} AND {upperbound}")
+        youth = cur.fetchall()[0][0]
         cur.close()
     except Exception as e:
         flash(f'Server error: {e}')
         return redirect(url_for('admin'))
         
-    return render_template("dashboard.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
+    return render_template("dashboard.html", youth = youth, memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
 
 
 # Login for Admins
@@ -249,10 +258,8 @@ def addmember():
 def members():
     if not auth():
         return redirect(url_for("login"))
-        # today = datetime.today()
-        # today = today.strftime('%Y-%m-%d')
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo INNER JOIN churchinfo ON memberinfo.id = churchinfo.memberid")
+    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo LEFT JOIN churchinfo ON memberinfo.id = churchinfo.memberid")
     members = cur.fetchall()
     cur.close()
     return render_template('memberslist.html', members = members)
@@ -277,8 +284,11 @@ def addchild():
             grade = request.form['grade_level']
             parent = request.form['parent_here']
             if parent == 'true':
-                father = request.form['parent1_fo_key']
-                mother = request.form['parent2_fo_key']
+                fatherid = request.form['parent1_fo_key']
+                motherid = request.form['parent2_fo_key']
+                fatherid = fatherid[0:fatherid.index(' ')]
+                motherid = motherid[0:motherid.index(' ')]
+                print(motherid, fatherid)
             else:
                 father = request.form['father_n']
                 mother = request.form['mother_n']
@@ -292,12 +302,15 @@ def addchild():
         try:
             cur = mysql.connection.cursor()
             if parent == 'true':
-                cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, motherid, fatherid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father))
+                cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, motherid, fatherid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, motherid, fatherid))
             else:
                 cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, mothername, fathername, familychurch, motherphone, fatherphone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father, church, motherphone, fatherphone))
             mysql.connection.commit()
         except Exception as e:
             flash(f'Internal Server Error: {e}')
+            redirect(url_for("addchild"))
+        else:
+            flash("Form submitted successfully!")
             redirect(url_for("addchild"))
         
     return render_template("addchild.html")
@@ -319,12 +332,22 @@ def analysis():
         cur.execute("SELECT COUNT(memberid) FROM churchinfo WHERE churchrelationship = 1")
         activemembers = cur.fetchall()
         activemembers = activemembers[0][0]
+        
+        if datetime.now().month > 8:
+            year = datetime.now().year - 7
+        else:
+            year = datetime.now().year - 8
+        upperbound = year - 15
+        lowerbound = year - 35
+        cur.execute(f"SELECT COUNT(id) from memberinfo WHERE birthyear BETWEEN {lowerbound} AND {upperbound}")
+        youth = cur.fetchall()[0][0]
         cur.close()
+        
     except Exception as e:
         flash(f'Server error: {e}')
-        return redirect(url_for('admin'))
+        return redirect(url_for('analysis'))
         
-    return render_template("analysis.html", memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
+    return render_template("analysis.html", youth = youth, memberscount = memberscount, childrencount = childrencount, activemembers = activemembers)
 
 
 # Members detail stats
@@ -409,16 +432,100 @@ def children():
     children = cur.fetchall()
     return render_template("childrenlist.html", children = children)
 
-# @app.route("/child/<int:id>", methods=['GET', 'POST'])
-# def child(id):
-#     cur = mysql.connection.cursor()
-#     cur.execute(f"SELECT * from memberinfo inner join serviceinfo on memberinfo.id = memberid where memberinfo.id = {id}")
-#     member = cur.fetchall()
-#     member = member[0]
-#     cur.close()
-#     return render_template('childDetail.html', member = member)
+@app.route("/child/<int:id>", methods=['GET', 'POST'])
+def child(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute(f"SELECT * from children where id = {id}")
+        child = cur.fetchall()[0]
+    except IndexError:
+        flash("Child Not Found!")
+        return redirect(url_for('children'))
+    if child[11] != None and child[12] != None:
+        cur.execute(f"select id, firstname, middlename from memberinfo where id = {child[11]}")
+        mother = cur.fetchall()[0]
+        cur.execute(f"select id, firstname, middlename from memberinfo where id = {child[12]}")
+        father = cur.fetchall()[0]
+    else:
+        mother, father = None, None
 
-    
+    cur.close()
+    return render_template('childDetail.html', child = child, mother = mother, father = father)
+
+
+@app.route("/child/<int:id>/edit", methods=['GET', 'POST'])
+def editchild(id):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * from children where id = {id}")
+    child = cur.fetchall()[0]
+    cur.close()
+    if request.method == 'POST':
+        try:
+            f_name = request.form["f_name"]
+            m_name = request.form["m_name"]
+            l_name = request.form["l_name"]
+            sex = request.form["sex"]
+            dob = request.form["dob"]
+            mob = request.form["mob"]
+            yob = request.form["yob"]
+            dvbs = request.form['dvbs_edu_status_list']
+            sunday = request.form['sunday']
+            grade = request.form['grade_level']
+            parent = request.form['parent_here']
+            if parent == 'true':
+                fatherid = request.form['parent1_fo_key']
+                motherid = request.form['parent2_fo_key']
+                fatherid = fatherid[0:fatherid.index(' ')]
+                motherid = motherid[0:motherid.index(' ')]
+                
+            else:
+                father = request.form['father_n']
+                mother = request.form['mother_n']
+                church = request.form['parent_church']
+                motherphone = request.form['mphoneNumber']
+                fatherphone = request.form['fphoneNumber']
+        except Exception as e:
+            flash(f"Missing: {e}")
+            redirect(url_for("addchild"))
+
+        try:
+            cur = mysql.connection.cursor()
+            if parent == 'true':
+                cur.execute("UPDATE children SET firstname = %s, middlename = %s, lastname = %s, sex = %s, birthdate = %s, birthmonth = %s, birthyear = %s, sundayschoollevel = %s, dvbslevel = %s, grade = %s, motherid = %s, fatherid = %s WHERE id = %s",(f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, motherid, fatherid, id))
+
+            else:
+                cur.execute("UPDATE children SET firstname = %s, middlename = %s, lastname = %s, sex = %s, birthdate = %s, birthmonth = %s, birthyear = %s, sundayschoollevel = %s, dvbslevel = %s, grade = %s, mothername = %s, fathername = %s, familychurch = %s, motherphone = %s, fatherphone = %s WHERE id = %s",(f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father, church, motherphone, fatherphone, id))
+                mysql.connection.commit()
+        except Exception as e:
+            flash(f'Internal Server Error: {e}')
+            return redirect(url_for("children"))
+        else:
+            flash("Form submitted successfully!")
+            return redirect(url_for("children"))
+
+    return render_template('editchild.html', child = child)
+
+@app.route("/livesearch", methods=["POST", "GET"])
+def livesearch():
+    searchbox = request.form.get("text")
+    cursor = mysql.connection.cursor()
+    query = "SELECT id, firstname, middlename, lastname FROM memberinfo WHERE firstname LIKE %s ORDER BY firstname"
+    cursor.execute(query, (searchbox + '%',))
+    result = cursor.fetchall()
+
+    # Convert the result tuple to a list of dictionaries
+    result_list = []
+    for row in result:
+        result_dict = {
+            'id': row[0],
+            'firstname': row[1],
+            'middlename': row[2],
+            'lastname': row[3]
+        }
+        result_list.append(result_dict)
+
+    return jsonify(result_list)
+
 if __name__ == "__main__":
     app.run(debug=True)
 

@@ -179,13 +179,14 @@
                         <th>ስም</th>
                         <th>SSC</th>
                         <th>Grade</th>
-                        <th class="text-right">Status</th>
+                        <th class="text-right">Parents Status</th>
                         
                       </thead>
                       <tbody>
-                        {{children}}
+                       
                         {% for child in children %}
                         <tr>
+                          
                          
                           {% set url = 'child/' + child[0]|string %}
                           
@@ -194,8 +195,10 @@
                           <td><a href="{{url}}">{{child[1] +' '+ child[2] +' '+ child[3]}}</a></td>
                           <td>{{child[8]}}</td>
                           <td>{{child[10]}}</td>
-                          {% if child[6]: %}
-                          <td class="text-right"><button class="btn btn-success">Active</button></td>
+                          {% if child[11] != None and child[12] != None: %}
+                          <td class="text-right"><button class="btn btn-success">Parents in church</button></td>
+                          {% else: %}
+                          <td class="text-right"><button class="btn btn-danger">Parents not in church</button></td>
                           {% endif %}
                         </tr>
                         {% endfor %}

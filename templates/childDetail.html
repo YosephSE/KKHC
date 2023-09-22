@@ -6,7 +6,7 @@
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
 
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Member Detail | {{member[2] + ' ' + ' ' + member[3] + ' ' + member[4]}}</title>
+    <title>KKHC | Child Detail | {{child[1] + ' ' + ' ' + child[2]}}</title>
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
       name="viewport"
@@ -148,7 +148,7 @@
             <div class="col-md-4 sidebarr-wrapper">
               <div class="card card-user">
                 <div class="image details-img">
-                  <img src="{{ url_for('static', filename=pic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" class="mx-auto"/>
+                  <img src="{{ url_for('static', filename='img/child.png') }}" alt="Loading" class="mx-auto"/>
                 </div>
                 <div class="card-footer">
                   <hr />
@@ -158,91 +158,66 @@
                         <h5>ID No</h5>
                       </div>
                       <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                        <h5>{{member[0]}}</h5>
+                        <h5>{{child[0]}}</h5>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">የሚያገለግሉባቸው አገልግሎቶች</h4>
-                </div>
-                <div class="card-body">
-                  <ul class="list-unstyled team-members">
-                    {% for service in services: %}
-                    <li>
-                      <div class="row">
-                        <div class="col-md-7 col-7">
-                          {{service[0]}}
-                          <br />
-                          {% if service[1] == 1 %}
-                          <span class="text-success"><small>Active</small></span>
-                          {% endif %}
-                          {% if service[1] == 0 %}
-                          <span class="text-danger"><small>Inactive</small></span>
-                          {% endif %}
-                        </div>
-                      </div>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
+              {% if mother != None and father != None: %}
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">የቤተሰብ አባላት</h4>
-                  <h4 class="card-title">{{mstat}}</h4>
                 </div>
                 <div class="card-body">
                   <ul class="list-unstyled team-members">
-                    {% if mstat != None and mstat[1] != None and mstat[2] != None: %}
-                    {% set pic = 'Attachments/' + spouse[0]|string + '.jpg' %}
-                    {% set url =  spouse[0]|string %}
+                    
                     <li>
-                      <a href="{{url}}">
+                      {% set mpic = 'Attachments/' + mother[0]|string + '.jpg' %}
+                      {% set murl =  '../member/' + mother[0]|string %}
+                      <a href="{{murl}}">
                         <div class="row">
                           <div class="col-md-2 col-2">
                             <div class="avatar">
-                              <img src="{{ url_for('static', filename=pic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" class="img-circle img-no-padding img-responsive">
+                              <img src="{{ url_for('static', filename=mpic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" class="img-circle img-no-padding img-responsive">
                             </div>
                           </div>&nbsp;&nbsp;&nbsp;
                           <div class="col-ms-7 col-7">
-                            {{spouse[1] + " " + spouse[2]}}
+                            {{mother[1] + " " + mother[2]}}
                             <br />
-                            <span class="text-danger"><small>Spouse</small></span>
+                            <span class="text-danger"><small>Mother</small></span>
                           </div>
                         </div>
                       </a>
                     </li>
-                    {% endif %}
-                    {% if children != None: %}
-                    {% for child in children: %}
                     <li>
-                      <div class="row">
-                        <div class="col-md-2 col-2">
-                          <div class="avatar">
-                            <img src="../static/img/child.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                      {% set fpic = 'Attachments/' + father[0]|string + '.jpg' %}
+                      {% set furl =  '../member/' + father[0]|string %}
+                      <a href="{{furl}}">
+                        <div class="row">
+                          <div class="col-md-2 col-2">
+                            <div class="avatar">
+                              <img src="{{ url_for('static', filename=fpic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" class="img-circle img-no-padding img-responsive">
+                            </div>
+                          </div>&nbsp;&nbsp;&nbsp;
+                          <div class="col-ms-7 col-7">
+                            {{father[1] + " " + father[2]}}
+                            <br />
+                            <span class="text-danger"><small>Father</small></span>
                           </div>
-                        </div>&nbsp;&nbsp;&nbsp;
-                        <div class="col-md-7 col-7">
-                          {{child[0] + "  " + child[1] }}
-                          <br />
-                          <span class="text-danger"><small>Child</small></span>
                         </div>
-                      </div>
+                      </a>
                     </li>
-                    {% endfor %}
-                    {% endif %}
                     
                   </ul>
                 </div>
               </div>
-            </div>
+              {% endif %}
+              </div>
             <div class="col-md-8">
               <div class="card card-user">
                 <div class="card-header border-bottom">
-                  <h5 class="card-title">የአባል መረጃ</h5>
+                  <h5 class="card-title">Child መረጃ</h5>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -250,142 +225,64 @@
                       <ul class="list-group list-group-borderless">
                         <li class="list-group-item mb-3">
                           <span>ሙሉ ስም:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[1] + ' ' + member[2] + ' ' + ' ' + member[3] + ' ' + member[4]}}</span>
+                          <span class="h6 fw-normal ms-1 mb-0">{{child[1] + ' ' + child[2] + ' ' + ' ' + child[3]}}</span>
                         </li>
                         <li class="list-group-item mb-3">
                           <span>ጾታ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0"> {{member[5]}}</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[4]}}</span>
                         </li>
                         <li class="list-group-item mb-3">
                           <span>የልደት ቀን:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[15]}}/{{member[16]}}/{{member[17]}}</span>
+                          <span class="h6 fw-normal ms-1 mb-0">{{child[5]}}/{{child[6]}}/{{child[7]}}</span>
                         </li>
                         <li class="list-group-item mb-3">
-                          <span>የአካል ጉዳት:</span>
-                          {% if member[13] == 0 %}
-                          <span class="h6 fw-normal ms-1 mb-0">No</span>
-                          {% elif member[13] == 1 %}
-                          <span class="h6 fw-normal ms-1 mb-0">Yes, {{member[14]}}</span>
-                          {% endif %}
+                          <span>Sunday school level:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[8]}}</span>
                         </li>
                         <li class="list-group-item mb-3">
-                          <span>ከፍለ ከተማ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[6]}}</span>
+                          <span>dvbs level:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[9]}}</span>
                         </li>
                         <li class="list-group-item mb-3">
-                          <span>ወረዳ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[7]}}</span>
-                          <li class="list-group-item mb-3">
-                            <span>የቤት ቁጥር፡ </span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[8]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>አካባቢ፡ </span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[9]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>የቤት ስልክ:</span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[10]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>ሞባይል ስልክ:</span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[11]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>ኢሜይል: </span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[12]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>የጥምቀት ቀን:</span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[21]}}/{{member[22]}}/{{member[23]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>የጥምቀት ቦታ:</span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[19]}}</span>
-                          </li>
-                          <li class="list-group-item mb-3">
-                            <span>የአባልነት ቀን:</span>
-                            <span class="h6 fw-normal ms-1 mb-0">{{member[24]}}/{{member[25]}}/{{member[26]}}</span>
-                          </li>
+                          <span>grade:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[10]}}</span>
                         </li>
+                        {% if mother == None and father == None: %}
+                        <li class="list-group-item mb-3">
+                          <span>Mother Name:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[13]}}</span>
+                        </li>
+                        <li class="list-group-item mb-3">
+                          <span>Mother Phone:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[16]}}</span>
+                        </li>
+                        <li class="list-group-item mb-3">
+                          <span>Father Name:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[14]}}</span>
+                        </li>
+                        <li class="list-group-item mb-3">
+                          <span>Father Phone:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[17]}}</span>
+                        </li>
+                        <li class="list-group-item mb-3">
+                          <span>Church:</span>
+                          <span class="h6 fw-normal ms-1 mb-0"> {{child[15]}}</span>
+                        </li>
+                        {% endif %}
                       </ul>
                     </div>
                     <div class="col-md-6">
                       <ul class="list-group list-group-borderless">
-                        {% if member[29] != None or member[30] != None: %}
-                        <li class="list-group-item mb-3">
-                          <span>የትምህርት ደረጃ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[30]}}</span>
-                        </li>
-                        <li class="list-group-item mb-3">
-                          <span>የትምህርት ዘርፍ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[29]}}</span>
-                        </li>
-                        {% endif %}
-                        <li class="list-group-item mb-3">
-                          <span>የስራ አይነት:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[33]}}</span>
-                        </li>
-                        <li class="list-group-item mb-3">
-                          <span>የስራ ቦታ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[34]}}</span>
-                        </li>
-                        <li class="list-group-item mb-3">
-                          <span>የስራ ሀላፊነት:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[35]}}</span>
-                        </li>
-                        <li class="list-group-item mb-3">
-                          <span>የሚጠሩበት ፕሮፌሽን:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[36]}}</span>
-                        </li>
-                        <li class="list-group-item mb-3">
-                          <span>ቤተክርስትያን የምትጠቀምበት ችሎታ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{member[37]}}</span>
-                        </li>
-                        {% if mstat == 0: %}
-                        <li class="list-group-item mb-3">
-                          <span>የትዳር ሁኔታ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">ያላገባ</span>
-                        </li>
-                        {% else: %}
-                        <li class="list-group-item mb-3">
-                          <span>የትዳር ሁኔታ:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">ያገባ</span>
-                        </li>
-                        {% if spouse != None and mstat[1] != None and mstat[2] != None: %}
-                        <li class="list-group-item mb-3">
-                          <span>የባለቤት ሙሉ ስም:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{spouse[1] + " " + spouse[2]}}</span>
-                        </li>
-                        {% endif %}
-                        <li class="list-group-item mb-3">
-                          <span>የጋብቻ ቀን:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">{{mstat[3]}}/{{mstat[4]}}/{{mstat[5]}}</span>
-                        </li>
-                          {% if mstat[3] == '1' %}
-                          <li class="list-group-item mb-3">
-                            <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">አዎ</span>
-                        </li>
-                          {% elif mstat[3] == '0' %}
-                          <li class="list-group-item mb-3">
-                            <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">አይ</span>
-                        </li>
-                          {% endif %}
                        
-                        <!-- <li class="list-group-item mb-3">
-                          <span>የዚህች ቤ/ክ አባል ናችው?:</span>
-                          <span class="h6 fw-normal ms-1 mb-0">አዎ</span>
-                        </li> -->
-                        {% endif %}
+
+                        
                       </ul>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="update ml-auto mr-auto">
-                    <a href="{{ url_for('editmember', id=member[0]) }}">
+                    <a href="{{ url_for('editchild', id=child[0]) }}">
                       <button type="submit" class="btn btn-primary btn-round">
                         መረጃ አስተካክል
                       </button>
