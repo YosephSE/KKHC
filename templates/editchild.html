@@ -16,7 +16,7 @@
       type="image/x-icon"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KKHC | Add Child</title>
+    <title>KKHC | Edit Child | {{child[1] + " " + child[2]}}</title>
     <!--     Fonts and icons     -->
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -74,37 +74,37 @@
         <div class="sidebar-wrapper">
           <ul class="nav">
             <li>
-              <a href="admin">
+              <a href="../../admin">
                 <i class="nc-icon nc-bank"></i>
                 <p>ዋና ማውጫ</p>
               </a>
             </li>
             <li>
-              <a href="addmember">
+              <a href="../../addmember">
                 <i class="nc-icon nc-simple-add"></i>
                 <p>አባላት ይጨምሩ</p>
               </a>
             </li>
             <li>
-              <a href="members">
+              <a href="../../members">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የአባላት ዝርዝር</p>
               </a>
             </li>
-            <li class="active">
-              <a href="addchild">
+            <li class="">
+              <a href="../../addchild">
                 <i class="nc-icon nc-simple-add"></i>
                 <p>ልጆችን ይጨምሩ</p>
               </a>
             </li>
             <li>
-              <a href="children">
+              <a href="../../children">
                 <i class="nc-icon nc-tile-56"></i>
                 <p>የልጆች ዝርዝር</p>
               </a>
             </li>
             <li>
-              <a href="analysis">
+              <a href="../../analysis">
                 <i class="nc-icon nc-chart-bar-32"></i>
                 <p>አናለይሲስ ይስሩ</p>
               </a>
@@ -126,7 +126,7 @@
                   <span class="navbar-toggler-bar bar3"></span>
                 </button>
               </div>
-              <a class="navbar-brand" href="javascript:;"
+              <a class="navbar-brand" href=""
                 >የኮተቤ ቃለ ህይወት ቤተ-ክርስትያን፤ የአባላት መረጃ ቋት</a
               >
             </div>
@@ -172,6 +172,7 @@
               <div class="card card-user">
                 <div class="card-header">
                   <h5 class="card-title">የልጆች መጨመርያ ፎርም</h5>
+                  <h5 class="card-title">{{child}}</h5>
                 </div>
                 {% for message in get_flashed_messages() %}
                   <div
@@ -190,7 +191,10 @@
                   </div>
                   {% endfor %}
                 <div class="card-body">
-                  <form method="post" action="/addchild">
+
+
+                  {% set url = request.url %}
+                  <form method="post" action="{{ url }}">
                     <div class="row user-raw">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -206,6 +210,7 @@
                                   placeholder="ስም"
                                   maxlength="100"
                                   required
+                                  value="{{child[1]}}"
                                 />
                               </div>
                             </div>
@@ -220,6 +225,7 @@
                                   placeholder="የአባት ስም"
                                   maxlength="100"
                                   required
+                                  value="{{child[2]}}"
                                 />
                               </div>
                             </div>
@@ -234,6 +240,7 @@
                                   placeholder="የአያት ስም"
                                   maxlength="100"
                                   required
+                                  value="{{child[3]}}"
                                 />
                               </div>
                             </div>
@@ -247,6 +254,7 @@
                           <div class="col-md-12">
                             <label for="sex">ጾታ</label>
                             <select name="sex" id="sex" class="form-control">
+                              <option value="{{child[4]}}">{{child[4]}}</option>
                               <option value="ሴት">ሴት</option>
                               <option value="ወንድ">ወንድ</option>
                             </select>
@@ -267,9 +275,10 @@
                               class="form-control"
                               placeholder="ቀን"
                               required
+                              value="{{child[5]}}"
                             />
                           </div>
-                          <div class="col--md-4">
+                          <div class="col-md-4">
                             <label for="mob">ወር:</label>
                             <input
                               type="number"
@@ -281,6 +290,7 @@
                               class="form-control"
                               placeholder="ወር"
                               required
+                              value="{{child[6]}}"
                             />
                           </div>
                           <div class="col-5">
@@ -295,165 +305,51 @@
                               class="form-control"
                               placeholder="ዓ.ም"
                               required
+                              value="{{child[7]}}"
                             />
                           </div>
                         </div>
-                      </div>
-                      
-                        
-                          <!-- <div class="form-group">
-                            <span class="handicap">የአካል ጉዳት</span>
-                            <div
-                              class="custom-control custom-radio custom-control-inline"
-                            >
-                              <input
-                                type="radio"
-                                id="yes"
-                                name="handicap"
-                                value="true"
-                                class="custom-control-input"
-                              />
-                              <label for="yes" class="custom-control-label"
-                                >አዎ</label
-                              >
-                            </div>
-                            <div
-                              class="custom-control custom-radio custom-control-inline"
-                            >
-                              <input
-                                type="radio"
-                                id="no"
-                                name="handicap"
-                                value="false"
-                                class="custom-control-input"
-                                checked
-                              />
-                              <label for="no" class="custom-control-label"
-                                >አይ</label
-                              >
-                            </div>
-                          </div> -->
-                        
-                      
+                      </div>                    
                     </div>
-                    <!-- <div class="row user-row">
-                      <div class="col-md-12 px-1">
-                        <div id="handicapDescription" class="handicap_desc">
-                          <label for="description">የአካል ጉዳት አይነት:</label>
-                          <textarea
-                            name="description"
-                            id="description"
-                            class="form-control textarea"
-                            maxlength="250"
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div> -->
-                    <!-- address staff -->
-                    <!-- <div class="row user-raw">
-                      <div class="col-md-4 px-1">
-                        <div class="row">
-                          <div class="col-md-4 subcity-size">
-                            <div class="form-group">
-                              <label for="subcity">ክፍለ-ከተማ *</label>
-                              <select
-                                id="subcity"
-                                name="subcity"
-                                class="form-control"
-                              >
-                                <option value="lemikura">ለሚ ኩራ</option>
-                                
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4 district-padding">
-                            <div class="form-group">
-                              <label for="district">ወረዳ *</label>
-                              <select
-                                id="district"
-                                name="district"
-                                class="form-control"
-                              >
-                                <option value="1">1</option>
-                               
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4 house-number-padding">
-                            <div class="form-group">
-                              <label for="house_no">የቤት ቁጥር</label>
-                              <input
-                                type="text"
-                                id="house_no"
-                                name="house_no"
-                                placeholder="የቤት ቁጥር"
-                                maxlength="10"
-                                class="form-control"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
+                    
+                    {% if child[11] != None and child[12] != None  %}
+                    <div class="row">
+                      <div class="col-md-12">
                         <div class="form-group">
-                          <label for="other_name">ልዩ መጠርያ *</label>
-                          <input
-                            type="text"
-                            id="other_name"
-                            name="other_name"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      
-                      <div class="col-md-4 email-input">
-                        <div class="form-group">
-                          <label>ኢ-ሜይል</label>
-                          <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="ኢ-ሜይል"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div> -->
-                    <!-- phone number -->
-                    <!-- <div class="col-md-12 px-1">
-                      <div class="row">
-                        <div class="col-md-2 opt-pho-no">
-                          <div class="form-group">
-                            <label for="countryCode1">*</label>
-                            <select
-                              id="countryCode1"
-                              name="countryCode"
-                              class="form-control"
+                          <span class="edu_status">የልጆች ወላጆች(አሳዳጊ) በቤተክርስትያን ውስጥ ናቸው?</span>
+                          <div
+                            class="custom-control custom-radio custom-control-inline"
+                          >
+                            <input
+                              type="radio"
+                              id="yesPHere"
+                              name="parent_here"
+                              class="custom-control-input"
+                              value="true"
+                              checked
+                            />
+                            <label class="custom-control-label" for="yesPHere"
+                              >አዎ</label
                             >
-                              <option value="eth">+251</option>
-                              
-                            </select>
                           </div>
-                        </div>
-                        <div class="col-md-6 pho-no-in">
-                          <div class="form-group">
-                            <span class="phone">
-                              <label for="phoneNumber1">ስልክ ቁጥር</label>
-                              <input
-                                type="tel"
-                                id="phoneNumber1"
-                                name="phoneNumber"
-                                class="form-control"
-                                pattern="[0-9]{9}"
-                                required
-                              />
-                              <p class="error-msg" id="phno-err-msg1"></p>
-                            </span>
+                          <div
+                            class="custom-control custom-radio custom-control-inline"
+                          >
+                            <input
+                              type="radio"
+                              id="noPNot"
+                              name="parent_here"
+                              class="custom-control-input"
+                              value="false"
+                            />
+                            <label class="custom-control-label" for="noPNot"
+                              >አይ</label
+                            >
                           </div>
                         </div>
                       </div>
-                    </div> -->
+                    </div>
+                    {% else: %}
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -481,6 +377,7 @@
                               name="parent_here"
                               class="custom-control-input"
                               value="false"
+                              checked
                             />
                             <label class="custom-control-label" for="noPNot"
                               >አይ</label
@@ -489,6 +386,7 @@
                         </div>
                       </div>
                     </div>
+                    {% endif %}
                     <div class="row parenthere" id="parentHere">
                       <div class="col-md-6">
                         <div class="form-group">
@@ -500,6 +398,7 @@
                             class="form-control"
                             placeholder="የአባት ስም"
                             list="datalist"
+                            value="{{child[12]}}"
                           />
                           <datalist id="datalist"></datalist>
                         </div>
@@ -514,6 +413,7 @@
                             class="form-control"
                             placeholder="የእናት ስም"
                             list="datalist2"
+                            value="{{child[11]}}"
                           />
                           <datalist id="datalist2"></datalist>
                         </div>
@@ -533,6 +433,7 @@
                                   name="mother_n"
                                   placeholder="ስም"
                                   maxlength="100"
+                                  value="{{child[13]}}"
                                 />
 
                               </div>
@@ -547,6 +448,7 @@
                                   name="father_n"
                                   placeholder="የአባት ስም"
                                   maxlength="100"
+                                  value="{{child[14]}}"
                                   
                                 />
                               </div>
@@ -561,6 +463,7 @@
                                   name="parent_church"
                                   placeholder="የአያት ስም"
                                   maxlength="100"
+                                  value="{{child[15]}}"
                                   
                                 />
                               </div>
@@ -592,6 +495,7 @@
                                           class="form-control"
                                           pattern="[0-9]{9}"
                                           maxlength="9"
+                                          value="{{child[16]}}"
                                         />
                                         <p class="error-msg" id="phno-err-msg1"></p>
                                       </span>
@@ -620,6 +524,7 @@
                                           maxlength="9"
                                           class="form-control"
                                           pattern="[0-9]{9}"
+                                          value="{{child[17]}}"
                                         />
                                         <p class="error-msg" id="phno-err-msg2"></p>
                                       </span>
@@ -627,7 +532,7 @@
                                   </div>
                                 </div>
                               </div>
-                            <!-- </div> -->
+                            
                           </div>
                         </div>
                       </div>
@@ -641,6 +546,7 @@
                             name="dvbs_edu_status_list"
                             id="DVBSLevel"
                             class="form-control"
+                            value="{{child[9]}}"
                           />
                         </div>
                       </div>
@@ -654,6 +560,7 @@
                             class="form-control"
                             placeholder="የትምህርት ዘርፍ"
                             maxlength="200"
+                            value="{{child[8]}}"
                           />
                         </div>
                       </div>
@@ -667,6 +574,7 @@
                             class="form-control"
                             placeholder="የትምህርት ዘርፍ"
                             maxlength="200"
+                            value="{{child[10]}}"
                           />
                         </div>
                       </div>
