@@ -223,3 +223,16 @@ textarea.form-control {
 .card span {
     font-size: 15px;
 }
+.file-input{
+  padding: 5px;
+}
+.file-input input[type='file'] {
+  width: 700px;
+  height: 45px;
+  border-radius: 5px;
+  opacity: 1;
+  position: relative;
+}
+.file-- {
+  padding-left: 10px;
+}
