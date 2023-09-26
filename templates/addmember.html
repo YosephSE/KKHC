@@ -405,7 +405,7 @@
                                 <option value="አዲስ ከተማ">አዲስ ከተማ</option>
                                 <option value="ቂረቆስ">ቂረቆስ</option>
                                 <option value="አራዳ">አራዳ</option>
-                                <option value="ንፋስ">ንፋስ ስልክ ላፍቶ</option>
+                                <option value="ንፋስ ስልክ">ንፋስ ስልክ ላፍቶ</option>
                                 <!-- Add more options as needed -->
                               </select>
                             </div>
@@ -484,7 +484,6 @@
                             <label for="countryCode1">ስልክ ቁጥር*</label>
                             <select
                               id="countryCode1"
-                              name="countryCode"
                               class="form-control"
                             >
                               <option value="eth">+251</option>
@@ -499,10 +498,11 @@
                               <input
                                 type="tel"
                                 id="phoneNumber1"
-                                name="phoneNumber"
+                                name="phoneNumber1"
                                 class="form-control"
                                 pattern="[0-9]{9}"
                                 required
+                                maxlength="9"
                               />
                               <p class="error-msg" id="phno-err-msg1"></p>
                             </span>
@@ -513,7 +513,6 @@
                             <label for="countryCode2">ስልክ ቁጥር</label>
                             <select
                               id="countryCode2"
-                              name="countryCode"
                               class="form-control"
                             >
                               <option value="eth">+251</option>
@@ -527,9 +526,10 @@
                               <input
                                 type="tel"
                                 id="phoneNumber2"
-                                name="phoneNumber"
+                                name="phoneNumber2"
                                 class="form-control"
                                 pattern="[0-9]{9}"
+                                maxlength="9"
                               />
                               <p class="error-msg" id="phno-err-msg2"></p>
                             </span>
@@ -615,15 +615,15 @@
                                 placeholder="ቀን"
                                 required
                               />
-                            </div>
+                            </div>  
                             <div class="col--md-4">
                               <label for="momebership">ቀን:</label>
                               <input
                                 type="number"
                                 id="momebership"
-                                name="momebership"
+                                name="momembership"
                                 min="1"
-                                max="12"
+                                max="13"
                                 step="1"
                                 class="form-control"
                                 placeholder="ወር"
@@ -713,52 +713,52 @@
                           <div class="form-group">
                             <label class="container1"
                               >የዝማሬ አገልግሎት
-                              <input type="checkbox" name="singer" />
+                              <input type="checkbox" name="singer" value="1" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የልጆች አገልግሎት
-                              <input type="checkbox" name="children" />
+                              <input type="checkbox" name="children" value="2" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የጸሎት አገልግሎት
-                              <input type="checkbox" name="prayer" />
+                              <input type="checkbox" name="prayer" value="3" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የወጣቶች አገልግሎት
-                              <input type="checkbox" name="youth" />
+                              <input type="checkbox" name="youth" value="4" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የእህቶች አገልግሎት
-                              <input type="checkbox" name="sisters" />
+                              <input type="checkbox" name="sisters" value="5" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የወንጌል ስርጭት አገልግሎት
-                              <input type="checkbox" name="outreach" />
+                              <input type="checkbox" name="outreach" value="6" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የዲያቆን አገልግሎት
-                              <input type="checkbox" name="deacon" />
+                              <input type="checkbox" name="deacon" value="7" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የፍቅርና ርህራሄ አገልግሎት
-                              <input type="checkbox" name="charity" />
+                              <input type="checkbox" name="charity" value="8" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የእድር አገልግሎት
-                              <input type="checkbox" name="eddir" />
+                              <input type="checkbox" name="eddir" value="9" />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
                               >የሽምግልና አገልግሎት
-                              <input type="checkbox" name="elder" />
+                              <input type="checkbox" name="elder" value="10" />
                               <span class="checkmark1"></span>
                             </label>
                           </div>
@@ -766,52 +766,52 @@
                         <div class="col-md-4">
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status1" />
+                            <input type="radio" name="status1"  value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status2" />
+                            <input type="radio" name="status2" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status3" />
+                            <input type="radio" name="status3" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status4" />
+                            <input type="radio" name="status4" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status5" />
+                            <input type="radio" name="status5" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status6" />
+                            <input type="radio" name="status6" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status7" />
+                            <input type="radio" name="status7" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status8" />
+                            <input type="radio" name="status8" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status9" />
+                            <input type="radio" name="status9" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status10" />
+                            <input type="radio" name="status10" value="1"/>
                             <span class="checkmark2"></span>
                           </label>
                         </div>
@@ -822,6 +822,7 @@
                               type="radio"
                               checked="checked"
                               name="status1"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -831,6 +832,7 @@
                               type="radio"
                               name="status2"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -840,6 +842,7 @@
                               type="radio"
                               name="status3"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -849,6 +852,7 @@
                               type="radio"
                               name="status4"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -858,6 +862,7 @@
                               type="radio"
                               name="status5"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -867,6 +872,7 @@
                               type="radio"
                               name="status6"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -876,6 +882,7 @@
                               type="radio"
                               name="status7"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -885,6 +892,7 @@
                               type="radio"
                               name="status8"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -894,6 +902,7 @@
                               type="radio"
                               name="status9"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -903,6 +912,7 @@
                               type="radio"
                               name="status10"
                               checked="checked"
+                              value="0"
                             />
                             <span class="checkmark2"></span>
                           </label>
@@ -953,13 +963,13 @@
                             id="eduStatusList"
                             class="form-control"
                           >
-                            <option value="elementary">የመጀመርያ ደረጃ ትምህርት</option>
-                            <option value="highschool">ሁለተኛ ደረጃ ትምህርት</option>
-                            <option value="diploma">ዲፕሎማ</option>
-                            <option value="certeficate">ሰርተፍኬት</option>
-                            <option value="degree">ዲግሪ</option>
-                            <option value="masters">ማስተርስ</option>
-                            <option value="phd">ዶክትሬት</option>
+                            <option value="የመጀመርያ ደረጃ">የመጀመርያ ደረጃ ትምህርት</option>
+                            <option value="ሁለተኛ ደረጃ">ሁለተኛ ደረጃ ትምህርት</option>
+                            <option value="ዲፕሎማ">ዲፕሎማ</option>
+                            <option value="ሰርተፍኬት">ሰርተፍኬት</option>
+                            <option value="ዲግሪ">ዲግሪ</option>
+                            <option value="ማስተርስ">ማስተርስ</option>
+                            <option value="ዶክትሬት">ዶክትሬት</option>
                           </select>
                         </div>
                       </div>
@@ -1071,7 +1081,9 @@
                                 >
                                   <option value="የግል">የግል</option>
                                   <option value="የመንግስት">የመንግስት</option>
-                                  <option value="መንግስታዊ ያልሆነ">መንግስታዊ ያልሆነ</option>
+                                  <option value="መንግስታዊ ያልሆነ">
+                                    መንግስታዊ ያልሆነ
+                                  </option>
                                   <option value="የቤ/ክ አገልጋይ">የቤ/ክ አገልጋይ</option>
                                   <option value="የግል ድርጅት">የግል ድርጅት</option>
                                   <option value="የቤት ሰራተኛ">የቤት ሰራተኛ</option>
@@ -1183,21 +1195,6 @@
                       </div>
                     </div>
                     <div class="maritial_bool" id="maritalStatus">
-                      <div class="file_upload">
-                        <div class="mb-3">
-                          <label for="formFile" class="form-label"
-                            >Profile Picture</label
-                          >
-                          <input
-                            class="form-control"
-                            type="file"
-                            id="fileToUpload"
-                            type="file"
-                            name="profile"
-                            accept="image/*"
-                          />
-                        </div>
-                      </div>
                       <div class="row">
                         <div class="col-md-1 px-1">
                           <div class="form-group">
@@ -1225,10 +1222,9 @@
                               type="text"
                               class="form-control"
                               id="sf_name"
-                              name="sfname"
+                              name="sf_name"
                               placeholder="ስም"
                               maxlength="100"
-                              required
                             />
                           </div>
                         </div>
@@ -1239,10 +1235,9 @@
                               type="text"
                               class="form-control"
                               id="sm_name"
-                              name="smname"
+                              name="sm_name"
                               placeholder="የአባት ስም"
                               maxlength="100"
-                              required
                             />
                           </div>
                         </div>
@@ -1252,54 +1247,10 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="slname"
+                              id="sl_name"
                               name="sl_name"
                               placeholder="የአያት ስም"
                               maxlength="100"
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-2">
-                          <div class="form-group">
-                            <label for="scountryCode1">ስልክ ቁጥር*</label>
-                            <select
-                              id="scountryCode1"
-                              name="scountryCode"
-                              class="form-control"
-                            >
-                              <option value="eth">+251</option>
-                              <!-- Add more options as needed -->
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <span class="phone">
-                              <label for="sphoneNumber1">ስልክ:</label>
-                              <input
-                                type="tel"
-                                id="sphoneNumber1"
-                                name="sphoneNumber"
-                                class="form-control"
-                                pattern="[0-9]{9}"
-                                required
-                              />
-                              <p class="error-msg" id="sphno-err-msg1"></p>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="semail">ኢ-ሜይል</label>
-                            <input
-                              type="email"
-                              name="semail"
-                              class="form-control"
-                              placeholder="ኢ-ሜይል"
-                              required
                             />
                           </div>
                         </div>
@@ -1320,7 +1271,6 @@
                                   step="1"
                                   class="form-control"
                                   placeholder="ቀን"
-                                  required
                                 />
                               </div>
                               <div class="col--md-4">
@@ -1334,7 +1284,6 @@
                                   step="1"
                                   class="form-control"
                                   placeholder="ወር"
-                                  required
                                 />
                               </div>
                               <div class="col-4">
@@ -1348,55 +1297,6 @@
                                   step="1"
                                   class="form-control"
                                   placeholder="ዓ.ም"
-                                  required
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-4">
-                                <label for="sdob">ልደት ቀን:</label>
-                                <input
-                                  type="number"
-                                  id="sdob"
-                                  name="sdob"
-                                  min="1"
-                                  max="30"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ቀን"
-                                  required
-                                />
-                              </div>
-                              <div class="col--md-4">
-                                <label for="smob">:</label>
-                                <input
-                                  type="number"
-                                  id="smob"
-                                  name="smob"
-                                  min="1"
-                                  max="12"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ወር"
-                                  required
-                                />
-                              </div>
-                              <div class="col-5">
-                                <label for="syob">:</label>
-                                <input
-                                  type="number"
-                                  id="syob"
-                                  name="syob"
-                                  min="1900"
-                                  max="2099"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ዓ.ም"
-                                  required
                                 />
                               </div>
                             </div>
@@ -1486,13 +1386,12 @@
                                             <input
                                               type="number"
                                               id="sdobaptism"
-                                              name="dobaptism"
+                                              name="sdobaptism"
                                               min="1"
                                               max="30"
                                               step="1"
                                               class="form-control"
                                               placeholder="ቀን"
-                                              required
                                             />
                                           </div>
                                           <div class="col--md-4">
@@ -1500,13 +1399,12 @@
                                             <input
                                               type="number"
                                               id="smobaptism"
-                                              name="mobaptism"
+                                              name="smobaptism"
                                               min="1"
                                               max="12"
                                               step="1"
                                               class="form-control"
                                               placeholder="ወር"
-                                              required
                                             />
                                           </div>
                                           <div class="col-5">
@@ -1514,13 +1412,12 @@
                                             <input
                                               type="number"
                                               id="syobaptism"
-                                              name="yobaptism"
+                                              name="syobaptism"
                                               min="1900"
                                               max="2099"
                                               step="1"
                                               class="form-control"
                                               placeholder="ዓ.ም"
-                                              required
                                             />
                                           </div>
                                         </div>
@@ -1535,7 +1432,6 @@
                                           id="bap_where"
                                           maxlength="150"
                                           class="form-control"
-                                          required
                                         />
                                       </div>
                                     </div>
@@ -1549,13 +1445,12 @@
                                             <input
                                               type="number"
                                               id="sdomembership"
-                                              name="domembership"
+                                              name="sdomembership"
                                               min="1"
                                               max="30"
                                               step="1"
                                               class="form-control"
                                               placeholder="ቀን"
-                                              required
                                             />
                                           </div>
                                           <div class="col--md-4">
@@ -1565,13 +1460,12 @@
                                             <input
                                               type="number"
                                               id="smomebership"
-                                              name="momebership"
+                                              name="smomebership"
                                               min="1"
                                               max="12"
                                               step="1"
                                               class="form-control"
                                               placeholder="ወር"
-                                              required
                                             />
                                           </div>
                                           <div class="col-5">
@@ -1579,19 +1473,127 @@
                                             <input
                                               type="number"
                                               id="syomembership"
-                                              name="yomembership"
+                                              name="syomembership"
                                               min="1900"
                                               max="2099"
                                               step="1"
                                               class="form-control"
                                               placeholder="ዓ.ም"
-                                              required
                                             />
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <div class="row">
+                                    <div class="col-md-2">
+                                      <div class="form-group">
+                                        <label for="scountryCode1"
+                                          >ስልክ ቁጥር*</label
+                                        >
+                                        <select
+                                          id="scountryCode1"
+                                          class="form-control"
+                                        >
+                                          <option value="eth">+251</option>
+                                          <!-- Add more options as needed -->
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="form-group">
+                                        <span class="phone">
+                                          <label for="sphoneNumber1"
+                                            >ስልክ:</label
+                                          >
+                                          <input
+                                            type="tel"
+                                            id="sphoneNumber1"
+                                            name="sphoneNumber"
+                                            class="form-control"
+                                            pattern="[0-9]{9}"
+                                          />
+                                          <p
+                                            class="error-msg"
+                                            id="sphno-err-msg1"
+                                          ></p>
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="semail">ኢ-ሜይል</label>
+                                        <input
+                                          type="email"
+                                          name="semail"
+                                          class="form-control"
+                                          placeholder="ኢ-ሜይል"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-4">
+                                            <label for="dob">ልደት ቀን:</label>
+                                            <input
+                                              type="number"
+                                              id="dob"
+                                              name="sdob"
+                                              min="1"
+                                              max="30"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ቀን"
+                                            />
+                                          </div>
+                                          <div class="col--md-4">
+                                            <label for="mob">:</label>
+                                            <input
+                                              type="number"
+                                              id="mob"
+                                              name="smob"
+                                              min="1"
+                                              max="12"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ወር"
+                                            />
+                                          </div>
+                                          <div class="col-5">
+                                            <label for="yob">:</label>
+                                            <input
+                                              type="number"
+                                              id="yob"
+                                              name="syob"
+                                              min="1900"
+                                              max="2099"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ዓ.ም"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="file_upload">
+                                    <div class="mb-3">
+                                      <label for="formFile" class="form-label"
+                                        >Profile Picture</label
+                                      >
+                                      <input
+                                        class="form-control"
+                                        type="image"
+                                        id=""
+                                        type="file"
+                                        name="sprofile"
+                                        accept="image/*"
+                                      />
+                                    </div>
+                                  </div> -->
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group">
@@ -1641,7 +1643,7 @@
                                             >የዝማሬ አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="singer"
+                                              name="ssinger"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1649,7 +1651,7 @@
                                             >የልጆች አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="children"
+                                              name="schildren"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1657,7 +1659,7 @@
                                             >የጸሎት አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="prayer"
+                                              name="sprayer"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1665,7 +1667,7 @@
                                             >የወጣቶች አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="youth"
+                                              name="syouth"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1673,7 +1675,7 @@
                                             >የእህቶች አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="sisters"
+                                              name="ssisters"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1681,7 +1683,7 @@
                                             >የወንጌል ስርጭት አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="outreach"
+                                              name="soutreach"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1689,7 +1691,7 @@
                                             >የዲያቆን አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="deacon"
+                                              name="sdeacon"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1697,7 +1699,7 @@
                                             >የፍቅርና ርህራሄ አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="charity"
+                                              name="scharity"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1705,7 +1707,7 @@
                                             >የእድር አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="eddir"
+                                              name="seddir"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -1713,7 +1715,7 @@
                                             >የሽምግልና አገልግሎት
                                             <input
                                               type="checkbox"
-                                              name="elder"
+                                              name="selder"
                                             />
                                             <span class="checkmark1"></span>
                                           </label>
@@ -2024,7 +2026,7 @@
                                           <input
                                             type="radio"
                                             name="s_work_stats"
-                                            value="housewife"
+                                            value="false"
                                             id="shousewife"
                                             class="custom-control-input"
                                           />
@@ -2042,7 +2044,7 @@
                                           <input
                                             type="radio"
                                             name="s_work_stats"
-                                            value="student"
+                                            value="false"
                                             id="sstudent"
                                             class="custom-control-input"
                                           />
@@ -2060,7 +2062,7 @@
                                           <input
                                             type="radio"
                                             name="s_work_stats"
-                                            value="retired"
+                                            value="false"
                                             id="sretired"
                                             class="custom-control-input"
                                           />
@@ -2084,7 +2086,7 @@
                                                 የስራ አይነት
                                               </label>
                                               <select
-                                                name="work_type"
+                                                name="swork_type"
                                                 class="form-control"
                                                 id="workType"
                                               >
@@ -2114,7 +2116,7 @@
                                               </label>
                                               <input
                                                 type="text"
-                                                name="work_place"
+                                                name="swork_place"
                                                 id="workPlace"
                                                 maxlength="254"
                                                 class="form-control"
@@ -2128,7 +2130,7 @@
                                               </label>
                                               <input
                                                 type="text"
-                                                name="responsiblity"
+                                                name="sresponsiblity"
                                                 id="responsiblity"
                                                 maxlength="254"
                                                 class="form-control"
@@ -2143,7 +2145,7 @@
                                               </label>
                                               <input
                                                 type="text"
-                                                name="profession"
+                                                name="sprofession"
                                                 id="profession"
                                                 maxlength="254"
                                                 class="form-control"
@@ -2156,7 +2158,7 @@
                                               </label>
                                               <input
                                                 type="text"
-                                                name="talent"
+                                                name="stalent"
                                                 id="talent"
                                                 maxlength="254"
                                                 class="form-control"
