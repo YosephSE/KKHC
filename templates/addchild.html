@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -174,21 +173,21 @@
                   <h5 class="card-title">የልጆች መጨመርያ ፎርም</h5>
                 </div>
                 {% for message in get_flashed_messages() %}
-                  <div
-                    class="alert alert-warning alert-dismissible fade show"
-                    role="alert"
+                <div
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  {{message}}
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
                   >
-                    {{message}}
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="alert"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  {% endfor %}
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {% endfor %}
                 <div class="card-body">
                   <form method="post" action="/addchild">
                     <div class="row user-raw">
@@ -299,9 +298,8 @@
                           </div>
                         </div>
                       </div>
-                      
-                        
-                          <!-- <div class="form-group">
+
+                      <!-- <div class="form-group">
                             <span class="handicap">የአካል ጉዳት</span>
                             <div
                               class="custom-control custom-radio custom-control-inline"
@@ -333,8 +331,6 @@
                               >
                             </div>
                           </div> -->
-                        
-                      
                     </div>
                     <!-- <div class="row user-row">
                       <div class="col-md-12 px-1">
@@ -457,7 +453,9 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <span class="edu_status">የልጆች ወላጆች(አሳዳጊ) በቤተክርስትያን ውስጥ ናቸው?</span>
+                          <span class="edu_status"
+                            >የልጆች ወላጆች(አሳዳጊ) በቤተክርስትያን ውስጥ ናቸው?</span
+                          >
                           <div
                             class="custom-control custom-radio custom-control-inline"
                           >
@@ -494,7 +492,7 @@
                         <div class="form-group">
                           <label for="parent1">የአባት ስም</label>
                           <input
-                          type="text"
+                            type="text"
                             name="parent1_fo_key"
                             id="parent1"
                             class="form-control"
@@ -534,7 +532,6 @@
                                   placeholder="ስም"
                                   maxlength="100"
                                 />
-
                               </div>
                             </div>
                             <div class="col-md-4 px-1">
@@ -547,7 +544,6 @@
                                   name="father_n"
                                   placeholder="የአባት ስም"
                                   maxlength="100"
-                                  
                                 />
                               </div>
                             </div>
@@ -561,72 +557,81 @@
                                   name="parent_church"
                                   placeholder="የአያት ስም"
                                   maxlength="100"
-                                  
                                 />
                               </div>
                             </div>
                             <!-- <div class="row"> -->
-                              <div class="col-md-12">
-                                <div class="row">
-                                  <div class="col-md-2 opt-pho-no">
-                                    <div class="form-group">
-                                      <label for="mcountryCode1">፡</label>
-                                      <select
-                                        id="mcountryCode1"
-                                        name="countryCode"
-                                        class="form-control"
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-2 opt-pho-no">
+                                  <div class="form-group">
+                                    <label for="mcountryCode1">፡</label>
+                                    <select
+                                      id="mcountryCode1"
+                                      name="countryCode"
+                                      class="form-control"
+                                    >
+                                      <option value="eth">+251</option>
+                                      <!-- Add more options as needed -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4 pho-no-in">
+                                  <div class="form-group">
+                                    <span class="phone">
+                                      <label for="mphoneNumber1"
+                                        >የእናት ስልክ ቁጥር*:</label
                                       >
-                                        <option value="eth">+251</option>
-                                        <!-- Add more options as needed -->
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 pho-no-in">
-                                    <div class="form-group">
-                                      <span class="phone">
-                                        <label for="mphoneNumber1">የእናት ስልክ ቁጥር*:</label>
-                                        <input
-                                          type="tel"
-                                          id="mphoneNumber1"
-                                          name="mphoneNumber"
-                                          class="form-control"
-                                          pattern="[0-9]{9}"
-                                          maxlength="9"
-                                        />
-                                        <p class="error-msg" id="phno-err-msg1"></p>
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-                                      <label for="fcountryCode2">፡</label>
-                                      <select
-                                        id="fcountryCode2"
-                                        name="countryCode"
+                                      <input
+                                        type="tel"
+                                        id="mphoneNumber1"
+                                        name="mphoneNumber"
                                         class="form-control"
-                                      >
-                                        <option value="eth">+251</option>
-                                      </select>
-                                    </div>
+                                        pattern="[0-9]{9}"
+                                        maxlength="9"
+                                      />
+                                      <p
+                                        class="error-msg"
+                                        id="phno-err-msg1"
+                                      ></p>
+                                    </span>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <span class="phone">
-                                        <label for="fphoneNumber2">የአባት ስልክ ቁጥር*:</label>
-                                        <input
-                                          type="tel"
-                                          id="fphoneNumber2"
-                                          name="fphoneNumber"
-                                          maxlength="9"
-                                          class="form-control"
-                                          pattern="[0-9]{9}"
-                                        />
-                                        <p class="error-msg" id="phno-err-msg2"></p>
-                                      </span>
-                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    <label for="fcountryCode2">፡</label>
+                                    <select
+                                      id="fcountryCode2"
+                                      name="countryCode"
+                                      class="form-control"
+                                    >
+                                      <option value="eth">+251</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <span class="phone">
+                                      <label for="fphoneNumber2"
+                                        >የአባት ስልክ ቁጥር*:</label
+                                      >
+                                      <input
+                                        type="tel"
+                                        id="fphoneNumber2"
+                                        name="fphoneNumber"
+                                        maxlength="9"
+                                        class="form-control"
+                                        pattern="[0-9]{9}"
+                                      />
+                                      <p
+                                        class="error-msg"
+                                        id="phno-err-msg2"
+                                      ></p>
+                                    </span>
                                   </div>
                                 </div>
                               </div>
+                            </div>
                             <!-- </div> -->
                           </div>
                         </div>
@@ -637,7 +642,7 @@
                         <div class="form-group">
                           <label for="DVBSLevel">የDVBS ክፍል</label>
                           <input
-                          type="text"
+                            type="text"
                             name="dvbs_edu_status_list"
                             id="DVBSLevel"
                             class="form-control"
@@ -705,44 +710,60 @@
     ></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
-    </body>
-    <script>
-      $(document).ready(function(){
-          $("#parent1").on("input", function(e){
-              $("#datalist").empty();
-              $.ajax({
-                  method: "post",
-                  url: "/livesearch",
-                  data: {text: $("#parent1").val()},
-                  success: function(res){
-                      $.each(res, function(index, value){
-                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
-                          
-                          $("#datalist").append(option);
-                      });
-                  }
-              });
-          });
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#parent1").on("input", function (e) {
+        $("#datalist").empty();
+        $.ajax({
+          method: "post",
+          url: "/livesearch",
+          data: { text: $("#parent1").val() },
+          success: function (res) {
+            $.each(res, function (index, value) {
+              var option = $("<option>").text(
+                value.id +
+                  " - " +
+                  value.firstname +
+                  " " +
+                  value.middlename +
+                  " " +
+                  value.lastname
+              );
+
+              $("#datalist").append(option);
+            });
+          },
+        });
       });
+    });
   </script>
-    <script>
-      $(document).ready(function(){
-          $("#parent2").on("input", function(e){
-              $("#datalist2").empty();
-              $.ajax({
-                  method: "post",
-                  url: "/livesearch",
-                  data: {text: $("#parent2").val()},
-                  success: function(res){
-                      $.each(res, function(index, value){
-                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
-                          
-                          $("#datalist2").append(option);
-                      });
-                  }
-              });
-          });
+  <script>
+    $(document).ready(function () {
+      $("#parent2").on("input", function (e) {
+        $("#datalist2").empty();
+        $.ajax({
+          method: "post",
+          url: "/livesearch",
+          data: { text: $("#parent2").val() },
+          success: function (res) {
+            $.each(res, function (index, value) {
+              var option = $("<option>").text(
+                value.id +
+                  " - " +
+                  value.firstname +
+                  " " +
+                  value.middlename +
+                  " " +
+                  value.lastname
+              );
+
+              $("#datalist2").append(option);
+            });
+          },
+        });
       });
+    });
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
