@@ -193,22 +193,22 @@
                     method="post"
                     enctype="multipart/form-data"
                   >
-                    <div class="file_upload">
-                      <div class="mb-3">
-                        <label for="formFile" class="form-label"
-                          >Profile Picture</label
-                        >
-                        <input
-                          class="form-control"
-                          type="file"
-                          id="fileToUpload"
-                          type="file"
-                          name="profile"
-                          accept="image/*"
-                        />
+                  <div class="row user-raw">
+                      <div class="file-input form-group">
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label"
+                            >Profile Picture</label
+                          >
+                          <input
+                            class="form-control"
+                            type="file"
+                            id="fileToUpload"
+                            type="file"
+                            name="profile"
+                            accept="image/*"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="row user-raw">
                       <div class="col-md-12">
                         <div class="form-group">
                           <div class="row">
@@ -279,7 +279,7 @@
                     </div>
                     <div class="row user-row">
                       <div class="col-md-1 px-1">
-                        <div class="row">
+                        <div class="row form-group">
                           <div class="col-md-12">
                             <label for="sex">ጾታ</label>
                             <select name="sex" id="sex" class="form-control">
@@ -290,7 +290,7 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div class="row">
+                        <div class="row form-group">
                           <div class="col-4">
                             <label for="dob">ልደት ቀን:</label>
                             <input
@@ -305,7 +305,7 @@
                               required
                             />
                           </div>
-                          <div class="col--md-4">
+                          <div class="col-4">
                             <label for="mob">:</label>
                             <input
                               type="number"
@@ -319,7 +319,7 @@
                               required
                             />
                           </div>
-                          <div class="col-5">
+                          <div class="col--md-4">
                             <label for="yob">:</label>
                             <input
                               type="number"
@@ -371,7 +371,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-12">
                         <div id="handicapDescription" class="handicap_desc">
                           <label for="description">የአካል ጉዳት አይነት:</label>
                           <textarea
@@ -482,10 +482,7 @@
                         <div class="col-md-2 opt-pho-no">
                           <div class="form-group">
                             <label for="countryCode1">ስልክ ቁጥር*</label>
-                            <select
-                              id="countryCode1"
-                              class="form-control"
-                            >
+                            <select id="countryCode1" class="form-control">
                               <option value="eth">+251</option>
                               <!-- Add more options as needed -->
                             </select>
@@ -511,10 +508,7 @@
                         <div class="col-md-2">
                           <div class="form-group">
                             <label for="countryCode2">ስልክ ቁጥር</label>
-                            <select
-                              id="countryCode2"
-                              class="form-control"
-                            >
+                            <select id="countryCode2" class="form-control">
                               <option value="eth">+251</option>
                             </select>
                           </div>
@@ -615,7 +609,7 @@
                                 placeholder="ቀን"
                                 required
                               />
-                            </div>  
+                            </div>
                             <div class="col--md-4">
                               <label for="momebership">ቀን:</label>
                               <input
@@ -718,7 +712,11 @@
                             </label>
                             <label class="container1"
                               >የልጆች አገልግሎት
-                              <input type="checkbox" name="children" value="2" />
+                              <input
+                                type="checkbox"
+                                name="children"
+                                value="2"
+                              />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
@@ -738,7 +736,11 @@
                             </label>
                             <label class="container1"
                               >የወንጌል ስርጭት አገልግሎት
-                              <input type="checkbox" name="outreach" value="6" />
+                              <input
+                                type="checkbox"
+                                name="outreach"
+                                value="6"
+                              />
                               <span class="checkmark1"></span>
                             </label>
                             <label class="container1"
@@ -766,52 +768,52 @@
                         <div class="col-md-4">
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status1"  value="1"/>
+                            <input type="radio" name="status1" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status2" value="1"/>
+                            <input type="radio" name="status2" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status3" value="1"/>
+                            <input type="radio" name="status3" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status4" value="1"/>
+                            <input type="radio" name="status4" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status5" value="1"/>
+                            <input type="radio" name="status5" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status6" value="1"/>
+                            <input type="radio" name="status6" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status7" value="1"/>
+                            <input type="radio" name="status7" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status8" value="1"/>
+                            <input type="radio" name="status8" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status9" value="1"/>
+                            <input type="radio" name="status9" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                           <label class="container2"
                             >እያገለገሉ ነው
-                            <input type="radio" name="status10" value="1"/>
+                            <input type="radio" name="status10" value="1" />
                             <span class="checkmark2"></span>
                           </label>
                         </div>
@@ -929,8 +931,8 @@
                             <input
                               type="radio"
                               id="yesEdu"
-                              name="educheck"
                               class="custom-control-input"
+                              name="educheck"
                               value="true"
                             />
                             <label class="custom-control-label" for="yesEdu"
@@ -943,8 +945,8 @@
                             <input
                               type="radio"
                               id="noEdu"
-                              name="educheck"
                               class="custom-control-input"
+                              name="educheck"
                               value="false"
                             />
                             <label class="custom-control-label" for="noEdu"
@@ -1222,7 +1224,7 @@
                               type="text"
                               class="form-control"
                               id="sf_name"
-                              name="sf_name"
+                              name="sfname"
                               placeholder="ስም"
                               maxlength="100"
                             />
@@ -1235,7 +1237,7 @@
                               type="text"
                               class="form-control"
                               id="sm_name"
-                              name="sm_name"
+                              name="smname"
                               placeholder="የአባት ስም"
                               maxlength="100"
                             />
@@ -1247,8 +1249,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="sl_name"
-                              name="sl_name"
+                              id="slname"
+                              name="slname"
                               placeholder="የአያት ስም"
                               maxlength="100"
                             />
@@ -1309,51 +1311,20 @@
                           <div class="form-group">
                             <div class="spause_here" id="spauseHere">
                               <!-- if they are in any kind of church -->
-                              <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?</span>
-                              <div
-                                class="custom-control custom-radio custom-control-inline"
-                              >
-                                <input
-                                  type="radio"
-                                  name="sinchurch"
-                                  value="true"
-                                  id="sHereT"
-                                  class="custom-control-input"
-                                />
-                                <label for="sHereT" class="custom-control-label"
-                                  >አዎ</label
-                                >
-                              </div>
-                              <div
-                                class="custom-control custom-radio custom-control-inline"
-                              >
-                                <input
-                                  type="radio"
-                                  name="sinchurch"
-                                  value="false"
-                                  id="sHereF"
-                                  class="custom-control-input"
-                                />
-                                <label for="sHereF" class="custom-control-label"
-                                  >አይ</label
-                                >
-                              </div>
-                              <div class="ifhere" id="ifHere">
-                                <!-- if they are in this church -->
-                                <span>የዚህች ቤ/ክ አባል ናችው?</span>
+                              <div class="form-group">
+
+                                <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?</span>
                                 <div
                                   class="custom-control custom-radio custom-control-inline"
                                 >
                                   <input
                                     type="radio"
-                                    name="here"
+                                    name="sinchurch"
                                     value="true"
-                                    id="hereT"
+                                    id="sHereT"
                                     class="custom-control-input"
                                   />
-                                  <label
-                                    for="hereT"
-                                    class="custom-control-label"
+                                  <label for="sHereT" class="custom-control-label"
                                     >አዎ</label
                                   >
                                 </div>
@@ -1362,19 +1333,71 @@
                                 >
                                   <input
                                     type="radio"
-                                    name="here"
+                                    name="sinchurch"
                                     value="false"
-                                    id="hereF"
+                                    id="sHereF"
                                     class="custom-control-input"
                                   />
-                                  <label
-                                    for="hereF"
-                                    class="custom-control-label"
+                                  <label for="sHereF" class="custom-control-label"
                                     >አይ</label
                                   >
                                 </div>
+                              </div>
+
+                              <div class="ifhere" id="ifHere">
+                                <!-- if they are in this church -->
+                               
+                                <div class="form-group">
+
+                                  <span>የዚህች ቤ/ክ አባል ናችው?</span>
+                                  <div
+                                    class="custom-control custom-radio custom-control-inline"
+                                  >
+                                    <input
+                                      type="radio"
+                                      name="here"
+                                      value="true"
+                                      id="hereT"
+                                      class="custom-control-input"
+                                    />
+                                    <label
+                                      for="hereT"
+                                      class="custom-control-label"
+                                      >አዎ</label
+                                    >
+                                  </div>
+                                  <div
+                                    class="custom-control custom-radio custom-control-inline"
+                                  >
+                                    <input
+                                      type="radio"
+                                      name="here"
+                                      value="false"
+                                      id="hereF"
+                                      class="custom-control-input"
+                                    />
+                                    <label
+                                      for="hereF"
+                                      class="custom-control-label"
+                                      >አይ</label
+                                    >
+                                  </div>
+                                </div>
                                 <!-- if they are in this church -->
                                 <div class="yes_ifhere" id="yesIfHere">
+                                  <div class="row file-- form-group">
+                                    <div class="col-md-12 file-input">
+                                      <label for="profilePic" class="form-label">Choose Profile</label>
+                                      <input
+                                        type="file"
+                                        name="profile"
+                                        accept="image/*"
+                                        id="profilePic"
+                                        placeholder="choose a file"
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
                                   <div class="row">
                                     <div class="col-md-4">
                                       <div class="form-group">
@@ -1485,115 +1508,6 @@
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <div class="form-group">
-                                        <label for="scountryCode1"
-                                          >ስልክ ቁጥር*</label
-                                        >
-                                        <select
-                                          id="scountryCode1"
-                                          class="form-control"
-                                        >
-                                          <option value="eth">+251</option>
-                                          <!-- Add more options as needed -->
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <div class="form-group">
-                                        <span class="phone">
-                                          <label for="sphoneNumber1"
-                                            >ስልክ:</label
-                                          >
-                                          <input
-                                            type="tel"
-                                            id="sphoneNumber1"
-                                            name="sphoneNumber"
-                                            class="form-control"
-                                            pattern="[0-9]{9}"
-                                          />
-                                          <p
-                                            class="error-msg"
-                                            id="sphno-err-msg1"
-                                          ></p>
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <label for="semail">ኢ-ሜይል</label>
-                                        <input
-                                          type="email"
-                                          name="semail"
-                                          class="form-control"
-                                          placeholder="ኢ-ሜይል"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <div class="row">
-                                          <div class="col-4">
-                                            <label for="dob">ልደት ቀን:</label>
-                                            <input
-                                              type="number"
-                                              id="dob"
-                                              name="sdob"
-                                              min="1"
-                                              max="30"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ቀን"
-                                            />
-                                          </div>
-                                          <div class="col--md-4">
-                                            <label for="mob">:</label>
-                                            <input
-                                              type="number"
-                                              id="mob"
-                                              name="smob"
-                                              min="1"
-                                              max="12"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ወር"
-                                            />
-                                          </div>
-                                          <div class="col-5">
-                                            <label for="yob">:</label>
-                                            <input
-                                              type="number"
-                                              id="yob"
-                                              name="syob"
-                                              min="1900"
-                                              max="2099"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ዓ.ም"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!-- <div class="file_upload">
-                                    <div class="mb-3">
-                                      <label for="formFile" class="form-label"
-                                        >Profile Picture</label
-                                      >
-                                      <input
-                                        class="form-control"
-                                        type="image"
-                                        id=""
-                                        type="file"
-                                        name="sprofile"
-                                        accept="image/*"
-                                      />
-                                    </div>
-                                  </div> -->
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group">
@@ -2179,8 +2093,8 @@
                                       type="text"
                                       id="whereAreThey"
                                       maxlength="100"
-                                      class="form-control"
                                       name="schurch"
+                                      class="form-control"
                                     />
                                   </label>
                                 </div>
