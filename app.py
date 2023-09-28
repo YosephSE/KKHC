@@ -11,11 +11,11 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_HTTPONLY'] = True
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
-# Connect to MYSQL database
-# app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
-# app.config['MYSQL_USER'] = 'sql9647331'
-# app.config['MYSQL_DB'] = 'sql9647331'
-# app.config['MYSQL_PASSWORD'] = '3TWIARJRNk'
+# # Connect to MYSQL database
+# app.config['MYSQL_HOST'] = 'sql8.freesqldatabase.com'
+# app.config['MYSQL_USER'] = 'sql8649009'
+# app.config['MYSQL_DB'] = 'sql8649009'
+# app.config['MYSQL_PASSWORD'] = 'kA2XXymF4v'
 # app.config['MYSQL_PORT'] = 3306
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "Yoseph"
@@ -119,136 +119,198 @@ def addmember():
     if not auth():
         return redirect(url_for("login"))    
     if request.method == "POST":
-        try:
-            if 'profile' in request.files:
-                profile = request.files['profile']
-            title = request.form["title"]
-            f_name = request.form["f_name"]
-            m_name = request.form["m_name"]
-            l_name = request.form["l_name"]
-            sex = request.form["sex"]
-            dob = request.form["dob"]
-            mob = request.form["mob"]
-            yob = request.form["yob"]
-            handicap = request.form['handicap']
-            if handicap == 'false':
-                handicap = 0
-            else:
-                handicap = 1       
+        # try:
+        if 'profile' in request.files:
+            profile = request.files['profile']
+        title = request.form["title"]
+        f_name = request.form["f_name"]
+        m_name = request.form["m_name"]
+        l_name = request.form["l_name"]
+        sex = request.form["sex"]
+        dob = request.form["dob"]
+        mob = request.form["mob"]
+        yob = request.form["yob"]
+        handicap = request.form['handicap']
+        if handicap == 'false':
+            handicap = 0
+            description = ''
+        else:
+            handicap = 1       
             description = request.form["description"]
-            subcity = request.form['subcity']
-            district = request.form['district']
-            house_no = request.form['house_no']
-            other_name = request.form['other_name']
-            phone = request.form['phoneNumber1']
-            homephone = request.form['phoneNumber2']
-            email = request.form["email"]
-            dobaptism = request.form["dobaptism"]
-            mobaptism = request.form["mobaptism"]
-            yobaptism = request.form["yobaptism"]
-            bap_where = request.form["bap_where"]
-            domembership = request.form["domembership"]
-            momembership = request.form["momembership"]
-            yomembership = request.form["yomembership"]
-            inchurch = request.form["inchurch"]
-            if inchurch == 'false':
-                inchurch = 0
+        subcity = request.form['subcity']
+        district = request.form['district']
+        house_no = request.form['house_no']
+        other_name = request.form['other_name']
+        phone = request.form['phoneNumber1']
+        homephone = request.form['phoneNumber2']
+        email = request.form["email"]
+        dobaptism = request.form["dobaptism"]
+        mobaptism = request.form["mobaptism"]
+        yobaptism = request.form["yobaptism"]
+        bap_where = request.form["bap_where"]
+        domembership = request.form["domembership"]
+        momembership = request.form["momembership"]
+        yomembership = request.form["yomembership"]
+        inchurch = request.form["inchurch"]
+        if inchurch == 'false':
+            inchurch = 0
+        else:
+            inchurch = 1  
+        service = request.form["service"]
+        if service == "true":
+            services = {}
+            if 'singer' in request.form:
+                services[request.form["singer"]] = request.form['status1']
+            if 'children' in request.form:
+                services[request.form["children"]] = request.form['status2']
+            if 'prayer' in request.form:
+                services[request.form["prayer"]] = request.form['status3']
+            if 'youth' in request.form:
+                services[request.form["youth"]] = request.form['status4']
+            if 'sisters' in request.form:
+                services[request.form["sisters"]] = request.form['status5']
+            if 'outreach' in request.form:
+                services[request.form["outreach"]] = request.form['status6']
+            if 'deacon' in request.form:
+                services[request.form["deacon"]] = request.form['status7']
+            if 'charity' in request.form:
+                services[request.form["charity"]] = request.form['status8']
+            if 'eddir' in request.form:
+                services[request.form["eddir"]] = request.form['status9']
+            if 'elder' in request.form:
+                services[request.form["elder"]] = request.form['status10']
+            if "educheck" in request.form:
+                print(345678)
             else:
-                inchurch = 1  
-            service = request.form["service"]
-            if service == "true":
-                service = {}
-                if 'singer' in request.form:
-                    service[request.form["singer"]] = request.form['status1']
-                if 'children' in request.form:
-                    service[request.form["children"]] = request.form['status2']
-                if 'prayer' in request.form:
-                    service[request.form["prayer"]] = request.form['status3']
-                if 'youth' in request.form:
-                    service[request.form["youth"]] = request.form['status4']
-                if 'sisters' in request.form:
-                    service[request.form["sisters"]] = request.form['status5']
-                if 'outreach' in request.form:
-                    service[request.form["outreach"]] = request.form['status6']
-                if 'deacon' in request.form:
-                    service[request.form["deacon"]] = request.form['status7']
-                if 'charity' in request.form:
-                    service[request.form["charity"]] = request.form['status8']
-                if 'eddir' in request.form:
-                    service[request.form["eddir"]] = request.form['status9']
-                if 'elder' in request.form:
-                    service[request.form["elder"]] = request.form['status10']
-            educheck = request.form['educheck']
-            if educheck == 'true':
-                level = request.form["edu_status_list"]
-                field = request.form["sub_of_study"]
+                print("string")
+            # educheck = request.form["educheck"]
+            # print(educheck)
+            # if educheck == 'true':
+            #     level = request.form["edu_status_list"]
+            #     field = request.form["sub_of_study"]
+            #     print(level, field)
+            # else:
+            #     print("NO edu")
             work_stats = request.form["work_stats"]
             if work_stats == 'true':
                 work_stats = 1
                 work_type = request.form["work_type"]
                 work_place = request.form["work_place"]
-                responsibility = request.form["responsibility"]
+                responsibility = request.form["responsiblity"]
                 profession = request.form['profession']
                 talent = request.form["talent"]
+                print(work_stats, work_type, work_place, responsibility, profession, talent)
             else:
                 work_stats = 0
             mstats = request.form['mstats']
             if mstats == "true":
                 stitle = request.form['stitle']
-                sFName = request.form['sfname']
-                sMName = request.form['smname']
-                sLName = request.form['slname']
-                sphoneNumber = request.form['sphoneNumber']
-                semail = request.form['semail']
+                sfname = request.form['sfname']
+                smname = request.form['smname']
+                slname = request.form['slname']
                 merdate, mermonth, meryear = request.form['merdate'], request.form['mermonth'], request.form['meryear']
-                sdob, smob, syob = request.form['sdob'], request.form['smob'], request.form['syob']
                 sinchurch = request.form['sinchurch']
-                sinthischurch = request.form['here'] # memberinfo insert will depend on this
-                schurch = request.form['schurch']
+                shere = request.form['here']
+                if sinchurch == "true" and shere == "true":
+                    if 'sprofile' in request.files:
+                        sprofile = request.files['sprofile']
+                    # sex = request.form["sex"]
+                    # sdob = request.form["sdob"]
+                    # smob = request.form["smob"]
+                    # syob = request.form["syob"]
+                    # shandicap = request.form['shandicap']
+                    # if handicap == 'false':
+                    #     handicap = 0
+                    #     description = ''
+                    # else:
+                    #     handicap = 1       
+                    #     description = request.form["sdescription"]
+                    # sphone = request.form['phoneNumber1']
+                    # semail = request.form["semail"]
+                    sdobaptism = request.form["sdobaptism"]
+                    smobaptism = request.form["smobaptism"]
+                    syobaptism = request.form["syobaptism"]
+                    sbap_where = request.form["sbap_where"]
+                    sdomembership = request.form["sdomembership"]
+                    smomembership = request.form["smomembership"]
+                    syomembership = request.form["syomembership"]
+                    sservice = request.form["s_service"]
+                    if sservice == "true":
+                        sservices = {}
+                        if 'ssinger' in request.form:
+                            services[request.form["ssinger"]] = request.form['s_status1']
+                        if 'schildren' in request.form:
+                            services[request.form["schildren"]] = request.form['s_status2']
+                        if 'sprayer' in request.form:
+                            services[request.form["sprayer"]] = request.form['s_status3']
+                        if 'syouth' in request.form:
+                            services[request.form["syouth"]] = request.form['s_status4']
+                        if 'ssisters' in request.form:
+                            services[request.form["ssisters"]] = request.form['s_status5']
+                        if 'soutreach' in request.form:
+                            services[request.form["soutreach"]] = request.form['s_status6']
+                        if 'sdeacon' in request.form:
+                            services[request.form["sdeacon"]] = request.form['s_status7']
+                        if 'scharity' in request.form:
+                            services[request.form["scharity"]] = request.form['s_status8']
+                        if 'seddir' in request.form:
+                            services[request.form["seddir"]] = request.form['s_status9']
+                        if 'selder' in request.form:
+                            services[request.form["selder"]] = request.form['s_status10']
+                        print("spouse in this church!")
+                    
+                elif sinchurch == "true" and shere == "false":
+                    schurch = request.form['schurch']
+                    print("spouse in other church!")
+                    
+
+            #     sphoneNumber = request.form['sphoneNumber']
+                # semail = request.form['semail']
+                # sdob, smob, syob = request.form['sdob'], request.form['smob'], request.form['syob']
 
 
             
-        except KeyError as e:
-            flash(f"Missing or incorrect form field: {e}")
-            return redirect(url_for('addmember'))
-        except Exception as e:
-            flash(f"An error occurred: {e}")
-            return redirect(url_for("addmember"))
+        # except KeyError as e:
+        #     flash(f"Missing or incorrect form field: {e}")
+        #     return redirect(url_for('addmember'))
+        # except Exception as e:
+        #     flash(f"An error occurred: {e}")
+        #     return redirect(url_for("addmember"))
             
 
-        try:
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, mob, yob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
-            mysql.connection.commit()
-            cur.execute("SELECT id FROM memberinfo WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
-            userid = cur.fetchall()
-            userid = userid[0][0]
-            cur.close()
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizedwhere, dateofmembership, churchrelationship) VALUES (%s, %s, %s, %s, %s)", (userid, bap_date, bap_where, mem_date, inchurch))
-            mysql.connection.commit()
-            if service == "true":
-                for key, value in service.items():
-                    cur.execute("INSERT INTO serviceinfo(memberid, serviceid, isactive) VALUES (%s, %s, %s)", (userid, key, value))
-                    mysql.connection.commit()
-            if educheck == 'true':
-                cur.execute("INSERT INTO education(memberid, field, edulevel) VALUES (%s, %s, %s)", (userid, field, level))
+        # try:
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO memberinfo (title, firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, subcity, district, homeno, neighborhood, Homephone, personalphone, email, handicap, handicaptype) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (title, f_name, m_name, l_name, sex, dob, mob, yob, subcity, district, house_no, other_name, homephone, phone, email, handicap, description))
+        mysql.connection.commit()
+        cur.execute("SELECT id FROM memberinfo WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
+        userid = cur.fetchall()
+        userid = userid[0][0]
+        cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizmmonth, baptizmyear, baptizedwhere, dateofmembership, monthofmembership, yearofmembership, churchrelationship) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (userid, dobaptism, mobaptism, yobaptism, bap_where, domembership, momembership, yomembership, inchurch))
+        mysql.connection.commit()
+        if service == "true":
+            for key, value in services.items():
+                cur.execute("INSERT INTO serviceinfo(memberid, serviceid, isactive) VALUES (%s, %s, %s)", (userid, key, value))
                 mysql.connection.commit()
-            if work_stats == 1:
-                cur.execute("INSERT INTO workinfo(memberid, work, worktype, place, responsiblility, proffesion, talent) VALUES(%s, %s, %s, %s, %s, %s, %s)", (userid, work_stats, work_type, work_place, responsibility, profession, talent))
-                mysql.connection.commit()
+        # if educheck == 'true':
+        #     cur.execute("INSERT INTO education(memberid, field, edulevel) VALUES (%s, %s, %s)", (userid, field, level))
+        #     mysql.connection.commit()
+        # if work_stats == 1:
+        #     cur.execute("INSERT INTO workinfo(memberid, work, worktype, place, responsiblility, proffesion, talent) VALUES(%s, %s, %s, %s, %s, %s, %s)", (userid, work_stats, work_type, work_place, responsibility, profession, talent))
+        #     mysql.connection.commit()
+        # elif work_stats == 0:
+        #     cur.execute("INSERT INTO workinfo(memberid, work) VALUES(%s, %s)", (userid, 0))
+        #     mysql.connection.commit()
             # if mstats == 'true':
             #     cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s, %s)", (userid, shere, sFName, sMName, sLName))
             #     mysql.connection.commit()
-            if 'profile' in request.files and profile.filename != '':
-                profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
-                cur.execute("INSERT INTO files (memberid, picture) VALUES (%s, %s)", (userid, f'{userid}.jpg'))
-                mysql.connection.commit()
-                cur.close()
+            # cur.close()
+        if 'profile' in request.files and profile.filename != '':
+            profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
+            
 
-        except Exception as e:
-            flash(f"An error occurred: {e}")
-            return redirect(url_for('addmember'))
+        # except Exception as e:
+        #     flash(f"An error occurred: {e}")
+        #     return redirect(url_for('addmember'))
         flash('Form Submitted Successfully!')
         return redirect(url_for("addmember"))
     return render_template('addmember.html')
@@ -259,7 +321,7 @@ def members():
     if not auth():
         return redirect(url_for("login"))
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo LEFT JOIN churchinfo ON memberinfo.id = churchinfo.memberid")
+    cur.execute("SELECT id, firstname, middlename, lastname, subcity, personalphone, churchrelationship FROM memberinfo LEFT JOIN churchinfo ON memberinfo.id = churchinfo.memberid ORDER BY firstname")
     members = cur.fetchall()
     cur.close()
     return render_template('memberslist.html', members = members)
@@ -288,7 +350,7 @@ def addchild():
                 motherid = request.form['parent2_fo_key']
                 fatherid = fatherid[0:fatherid.index(' ')]
                 motherid = motherid[0:motherid.index(' ')]
-                print(motherid, fatherid)
+                
             else:
                 father = request.form['father_n']
                 mother = request.form['mother_n']
@@ -386,7 +448,6 @@ def member(id):
                 cur = mysql.connection.cursor()
                 cur.execute(f"SELECT spousefname, spousemname, spouseinchurch, spousechurch FROM marriage WHERE id = {mstat[0]}")
                 spouse = cur.fetchall()[0]
-                # print(spouse)
         except IndexError:
             mstat = None
             spouse = None
@@ -428,7 +489,7 @@ def editmember(id):
 @app.route("/children")
 def children():
     cur = mysql.connection.cursor()
-    cur.execute("select * from children")
+    cur.execute("select * from children order by firstname")
     children = cur.fetchall()
     return render_template("childrenlist.html", children = children)
 
