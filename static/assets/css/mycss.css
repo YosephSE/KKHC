@@ -236,3 +236,26 @@ textarea.form-control {
 .file-- {
   padding-left: 10px;
 }
+
+/* cardbody section */
+.card-body table tbody td .pimage{
+  display: block;
+  width: 50px !important;
+  height: 50px !important;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.card-body table tbody td img{
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+}
+/* tabelresponsive section */
+.table-responsive::-webkit-scrollbar{
+  display: none;
+}
+/* sidebar-weapper section */
+.sidebar-wrapper::-webkit-scrollbar{
+  display: none;
+  overflow: hidden;
+}
