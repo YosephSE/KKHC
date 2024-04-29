@@ -191,7 +191,11 @@
                           {% set url = 'child/' + child[0]|string %}
                           
 
-                          <td><img src="../static/img/child.png" class="img-circle img-no-padding img-responsive avatar" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo"></td>
+                          <td>
+                            <span class='pimage'>
+                              <img src="../static/img/child.png" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo">
+                            </span>
+                          </td>
                           <td><a href="{{url}}">{{child[1] +' '+ child[2] +' '+ child[3]}}</a></td>
                           <td>{{child[8]}}</td>
                           <td>{{child[10]}}</td>

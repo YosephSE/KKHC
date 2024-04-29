@@ -11,11 +11,11 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_HTTPONLY'] = True
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
-# # Connect to MYSQL database
-# app.config['MYSQL_HOST'] = 'sql8.freesqldatabase.com'
-# app.config['MYSQL_USER'] = 'sql8649009'
-# app.config['MYSQL_DB'] = 'sql8649009'
-# app.config['MYSQL_PASSWORD'] = 'kA2XXymF4v'
+# Connect to MYSQL database
+# app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
+# app.config['MYSQL_USER'] = 'sql9647331'
+# app.config['MYSQL_DB'] = 'sql9647331'
+# app.config['MYSQL_PASSWORD'] = '3TWIARJRNk'
 # app.config['MYSQL_PORT'] = 3306
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "Yoseph"
